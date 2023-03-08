@@ -1,3 +1,5 @@
+import { InvoiceStatus } from "src/app/emums/invoice-status.enum";
+
 export interface Invoice {
   id: string;
   createdAt: string;
@@ -6,7 +8,7 @@ export interface Invoice {
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: string;
+  status: InvoiceStatus;
   senderAddress: {
     street: string;
     city: string;

@@ -2,9 +2,29 @@
   <h1>Invoices</h1>
   <p>There are {{invoices.length}} total invoices</p>
 
-  <ul>
-    <li *ngFor="let invoice of invoices">
-      {{ invoice.id }} - {{ invoice.clientName }}
-    </li>
-  </ul>
+  <div class="invoices-list">
+    <div *ngFor="let invoice of invoices" class="invoice-item">
+      <div class="invoice-item-id">
+        <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
+      </div>
+      <div class="invoice-item-date">
+        {{ invoice.createdAt }}
+      </div>
+      <div class="invoice-item-client">
+        {{ invoice.clientName }}
+      </div>
+      <div class="invoice-item-total">
+        &#65505;{{ invoice.total }}
+      </div>
+      <div class="invoice-item-status" [ngClass]="{
+        'invoice-item-status-success': invoice.status === InvoiceStatus.PAID,
+        'invoice-item-status-warning': invoice.status === InvoiceStatus.PENDING
+      }">
+        {{ invoice.status }}
+      </div>
+      <div class="invoice-item-action">
+        <em class="icon icon-arrow-right"></em>
+      </div>
+    </div>
+  </div>
 </ng-container>
