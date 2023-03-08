@@ -1,2 +1,10 @@
-<h1>Invoices</h1>
-<p>There are 7 total invoices</p>
+<ng-container *ngIf="invoices$ | async; let invoices">
+  <h1>Invoices</h1>
+  <p>There are {{invoices.length}} total invoices</p>
+
+  <ul>
+    <li *ngFor="let invoice of invoices">
+      {{ invoice.id }} - {{ invoice.clientName }}
+    </li>
+  </ul>
+</ng-container>
