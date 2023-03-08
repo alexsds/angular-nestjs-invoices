@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { InvoicesListComponent } from './components/invoices-list/invoices-list.component';
+import { InvoicesListComponent } from './pages/invoices-list/invoices-list.component';
 import { InvoicesRoutingModule } from './invoices-routing.module';
 import { InvoicesService } from './services/invoices.service';
 
