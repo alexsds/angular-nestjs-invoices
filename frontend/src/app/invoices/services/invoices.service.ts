@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Invoice } from '../models/invoice';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class InvoicesService {
 
   constructor(private http: HttpClient) { }

@@ -2,7 +2,12 @@
   <div class="page-header">
     <div class="hadline">
       <h1 class="hadline-title">Invoices</h1>
-      <p class="hadline-description">There are {{invoices.length}} total invoices</p>
+      <p *ngIf="invoices.length > 0" class="hadline-description">
+        There are {{invoices.length}} total invoices
+      </p>
+      <p *ngIf="invoices.length === 0" class="hadline-description">
+        No invoices
+      </p>
     </div>
     <div class="actions">
       <button class="button">
@@ -12,29 +17,42 @@
     </div>
   </div>
 
-  <div class="invoices-list">
-    <div *ngFor="let invoice of invoices" class="invoice-item">
-      <div class="invoice-item-id">
-        <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
-      </div>
-      <div class="invoice-item-date">
-        {{ invoice.createdAt }}
-      </div>
-      <div class="invoice-item-client">
-        {{ invoice.clientName }}
-      </div>
-      <div class="invoice-item-total">
-        &#65505;{{ invoice.total }}
-      </div>
-      <div class="invoice-item-status" [ngClass]="{
+  <ng-container *ngIf="invoices.length > 0; else emptyState">
+    <div class="invoices-list">
+      <div *ngFor="let invoice of invoices" class="invoice-item">
+        <div class="invoice-item-id">
+          <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
+        </div>
+        <div class="invoice-item-date">
+          {{ invoice.createdAt }}
+        </div>
+        <div class="invoice-item-client">
+          {{ invoice.clientName }}
+        </div>
+        <div class="invoice-item-total">
+          &#65505;{{ invoice.total }}
+        </div>
+        <div class="invoice-item-status" [ngClass]="{
         'invoice-item-status-success': invoice.status === InvoiceStatus.PAID,
         'invoice-item-status-warning': invoice.status === InvoiceStatus.PENDING
       }">
-        {{ invoice.status }}
-      </div>
-      <div class="invoice-item-action">
-        <em class="icon icon-arrow-right"></em>
+          {{ invoice.status }}
+        </div>
+        <div class="invoice-item-action">
+          <em class="icon icon-arrow-right"></em>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </ng-container>
+
+<ng-template #emptyState>
+  <div class="empty-state">
+    <div class="empty-state-image"></div>
+    <h2 class="empty-state-title">There is nothing here</h2>
+    <p class="empty-state-desciption">
+      Create an invoice by clicking the <br>
+      <strong>New Invoice</strong> button and get started
+    </p>
+  </div>
+</ng-template>
