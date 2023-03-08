@@ -1,0 +1,49 @@
+.nav-bar
+	background-color: var(--primary-color)
+	width: var(--nav-bar-width)
+	height: 100vh
+	position: fixed
+	top: 0
+	border-top-right-radius: var(--nav-bar-border-radius)
+	border-bottom-right-radius: var(--nav-bar-border-radius)
+
+.logo
+	background: linear-gradient(180deg, #7C5DF9 50%, #9278FF 50%)
+	border-top-right-radius: var(--nav-bar-border-radius)
+	border-bottom-right-radius: var(--nav-bar-border-radius)
+	width: var(--nav-bar-width)
+	height: var(--nav-bar-width)
+	display: flex
+	align-items: center
+	justify-content: center
+	cursor: pointer
+
+	&-image
+		height: var(--nav-bar-image-size)
+		width: var(--nav-bar-image-size)
+
+.dark-mode-toggle
+	position: absolute
+	bottom: var(--nav-bar-width)
+	width: var(--nav-bar-width)
+	height: var(--nav-bar-width)
+	display: flex
+	align-items: center
+	justify-content: center
+	cursor: pointer
+
+.avatar
+	position: absolute
+	bottom: 0
+	width: var(--nav-bar-width)
+	height: var(--nav-bar-width)
+	display: flex
+	align-items: center
+	justify-content: center
+	border-top: 1px solid var(--border-color)
+	cursor: pointer
+
+	&-image
+		height: var(--nav-bar-image-size)
+		width: var(--nav-bar-image-size)
+		border-radius: 50%
