@@ -1,15 +1,10 @@
 .button
-  background-color: var(--button-color)
   color: var(--white-color)
   border: 0
   border-radius: 30px
-  padding: 10px 10px
-  padding-right: 17px
+  padding: 16px 24px
   font-weight: 600
   cursor: pointer
-
-  &:hover
-    background-color: var(--button-hover-color)
 
   &-icon
     background-color: var(--white-color)
@@ -19,3 +14,22 @@
     border-radius: 50%
     display: inline-block
     margin-right: 16px
+
+  &-primary
+    background-color: var(--button-primary-color)
+
+    &:hover
+      background-color: var(--button-primary-hover-color)
+
+  &-seccondary
+    background-color: var(--button-seccondary-color)
+
+    &:hover
+      background-color: var(--button-seccondary-hover-background-color)
+      color: var(--button-seccondary-hover-color)
+
+  &-danger
+    background-color: var(--button-danger-color)
+
+    &:hover
+      background-color: var(--button-danger-hover-color)

@@ -1,0 +1,34 @@
+:host
+  display: inline-block
+
+.status
+  flex: 1
+  padding: 10px 15px
+  border-radius: var(--border-radius)
+  text-align: center
+  text-transform: capitalize
+  color: var(--white-color)
+  background-color: var(--white-transparent-background-color)
+
+  &:before
+    content: ''
+    display: inline-block
+    width: 6px
+    height: 6px
+    background-color: var(--white-color)
+    border-radius: 50%
+    margin: 3px 5px
+
+  &-success
+    color: var(--success-color)
+    background-color: var(--success-background-color)
+
+    &:before
+      background-color: var(--success-color)
+
+  &-warning
+    color: var(--warning-color)
+    background-color: var(--warning-background-color)
+
+    &:before
+      background-color: var(--warning-color)

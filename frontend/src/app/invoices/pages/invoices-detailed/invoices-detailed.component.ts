@@ -4,14 +4,14 @@ import { Invoice } from '../../models/invoice';
 import { InvoicesService } from '../../services/invoices.service';
 
 @Component({
-  selector: 'app-invoices-list',
-  templateUrl: './invoices-list.component.html',
-  styleUrls: ['./invoices-list.component.sass']
+  selector: 'app-invoices-detailed',
+  templateUrl: './invoices-detailed.component.html',
+  styleUrls: ['./invoices-detailed.component.sass']
 })
-export class InvoicesListComponent {
-  invoices$: Observable<Invoice[]>
+export class InvoicesDetailedComponent {
+  invoice$: Observable<Invoice>
 
   constructor(private invoicesService: InvoicesService) {
-    this.invoices$ = this.invoicesService.getInvoices();
+    this.invoice$ = this.invoicesService.getOneById("1");
   }
 }

@@ -10,7 +10,7 @@
       </p>
     </div>
     <div class="actions">
-      <button class="button">
+      <button class="button button-primary">
         <span class="button-icon"><em class="icon icon-plus"></em></span>
         New Invoice
       </button>
@@ -19,7 +19,9 @@
 
   <ng-container *ngIf="invoices.length > 0; else emptyState">
     <div class="invoices-list">
-      <div *ngFor="let invoice of invoices" class="invoice-item">
+      <div *ngFor="let invoice of invoices"
+           class="invoice-item"
+           [routerLink]="[invoice.id]">
         <div class="invoice-item-id">
           <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
         </div>
@@ -32,11 +34,8 @@
         <div class="invoice-item-total">
           &#65505;{{ invoice.total }}
         </div>
-        <div class="invoice-item-status" [ngClass]="{
-        'invoice-item-status-success': invoice.status === InvoiceStatus.PAID,
-        'invoice-item-status-warning': invoice.status === InvoiceStatus.PENDING
-      }">
-          {{ invoice.status }}
+        <div class="invoice-item-status">
+          <app-invoice-status [status]="invoice.status"></app-invoice-status>
         </div>
         <div class="invoice-item-action">
           <em class="icon icon-arrow-right"></em>

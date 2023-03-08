@@ -1,0 +1,18 @@
+<a [routerLink]="['..']" class="go-back-action">
+    <em class="go-back-action-icon icon icon-arrow-left"></em>
+    Go back
+</a>
+
+<ng-container *ngIf="invoice$ | async; let invoice">
+    <div class="toolbar">
+        <div class="status">
+            <div class="status-text">Status</div>
+            <app-invoice-status [status]="invoice.status"></app-invoice-status>
+        </div>
+        <div class="actions">
+            <button class="button button-seccondary">Edit</button>
+            <button class="button button-danger">Delete</button>
+            <button class="button button-primary">Mark as Paid</button>
+        </div>
+    </div>
+</ng-container>

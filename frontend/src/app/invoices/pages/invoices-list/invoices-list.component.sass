@@ -24,6 +24,10 @@
   color: var(--white-color)
   padding: 15px 28px
   border-radius: var(--border-radius)
+  cursor: pointer
+
+  &:hover
+    box-shadow: var(--primary-color-hover) 0px 1px 3px 0px, var(--primary-color-hover) 0px 0px 0px 1px
 
   &-id
     font-weight: bold
@@ -46,35 +50,9 @@
 
   &-status
     flex: 1
-    padding: 10px 0
-    border-radius: var(--border-radius)
-    text-align: center
-    text-transform: capitalize
-    color: var(--white-color)
-    background-color: var(--white-transparent-background-color)
 
-    &:before
-      content: ''
-      display: inline-block
-      width: 6px
-      height: 6px
-      background-color: var(--white-color)
-      border-radius: 50%
-      margin: 3px 5px
-
-    &-success
-      color: var(--success-color)
-      background-color: var(--success-background-color)
-
-      &:before
-        background-color: var(--success-color)
-
-    &-warning
-      color: var(--warning-color)
-      background-color: var(--warning-background-color)
-
-      &:before
-        background-color: var(--warning-color)
+    app-invoice-status
+      width: 100%
 
   &-action
     margin-left: 20px
