@@ -1,6 +1,16 @@
 <ng-container *ngIf="invoices$ | async; let invoices">
-  <h1>Invoices</h1>
-  <p>There are {{invoices.length}} total invoices</p>
+  <div class="page-header">
+    <div class="hadline">
+      <h1 class="hadline-title">Invoices</h1>
+      <p class="hadline-description">There are {{invoices.length}} total invoices</p>
+    </div>
+    <div class="actions">
+      <button class="button">
+        <span class="button-icon"><em class="icon icon-plus"></em></span>
+        New Invoice
+      </button>
+    </div>
+  </div>
 
   <div class="invoices-list">
     <div *ngFor="let invoice of invoices" class="invoice-item">
