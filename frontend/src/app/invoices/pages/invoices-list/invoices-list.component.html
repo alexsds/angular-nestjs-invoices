@@ -32,7 +32,7 @@
           {{ invoice.clientName }}
         </div>
         <div class="invoice-item-total">
-          &#65505;{{ invoice.total }}
+          {{ invoice.total | currency }}
         </div>
         <div class="invoice-item-status">
           <app-invoice-status [status]="invoice.status"></app-invoice-status>
