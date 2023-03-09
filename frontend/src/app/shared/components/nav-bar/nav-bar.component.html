@@ -2,8 +2,12 @@
   <div class="logo" title="Invoices">
     <img class="logo-image" src="../../../../assets/images/logo.svg" alt="Invoices">
   </div>
-  <div class="dark-mode-toggle" title="Toggle dark mode">
-    <em class="icon icon-sun"></em>
+  <div *ngIf="currentTheme$ | async; let currentTheme"
+       (click)="onClickToggleTheme()"
+       class="dark-mode-toggle"
+       [title]="currentTheme === Theme.LIGHT ? 'Toggle dark mode' : 'Toggle light mode'">
+    <em *ngIf="currentTheme === Theme.DARK" class="icon icon-sun"></em>
+    <em *ngIf="currentTheme === Theme.LIGHT" class="icon icon-moon"></em>
   </div>
   <div class="avatar" title="John Doe">
     <img class="avatar-image" src="../../../../assets/images/image-avatar.jpg" alt="John Doe">
