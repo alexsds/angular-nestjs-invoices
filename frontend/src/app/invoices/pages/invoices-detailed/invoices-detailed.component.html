@@ -10,7 +10,7 @@
             <app-invoice-status [status]="invoice.status"></app-invoice-status>
         </div>
         <div class="actions">
-            <button class="button button-seccondary">Edit</button>
+            <button class="button button-seccondary" (click)="onClickEditAction()">Edit</button>
             <button class="button button-danger">Delete</button>
             <button class="button button-primary">Mark as Paid</button>
         </div>

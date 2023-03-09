@@ -1,0 +1,150 @@
+<div class="backdrop" (click)="onClickOutsideForm()"></div>
+<form>
+  <div class="form">
+    <div class="form-body">
+      <div class="form-content">
+        <h1 class="form-title">New Invoice</h1>
+        <fieldset class="form-fieldset">
+          <legend class="form-legend">Bill From</legend>
+          <div class="form-group">
+            <label class="form-label" for="street">Stree address</label>
+            <input class="form-control" type="text" name="street" value="19 Union Terrace">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="city">City</label>
+              <input class="form-control" type="text" name="city" value="London">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-code">Post Code</label>
+              <input class="form-control" type="text" name="post-code" value="E1 3EZ">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="country">Country</label>
+              <input class="form-control" type="text" name="country" value="United Kingdom">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-fieldset">
+          <legend class="form-legend">Bill To</legend>
+          <div class="form-group">
+            <label class="form-label" for="clientName">Client's Name</label>
+            <input class="form-control" type="text" name="clientName" value="Alex Grim">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="clientEmail">Client's Email</label>
+            <input class="form-control" type="text" name="clientEmail" value="alexgrim@mail.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="street">Stree address</label>
+            <input class="form-control" type="text" name="street" value="84 Church Way">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="city">City</label>
+              <input class="form-control" type="text" name="city" value="Bradford">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="post-code">Post Code</label>
+              <input class="form-control" type="text" name="post-code" value="BD1 9PB">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="country">Country</label>
+              <input class="form-control" type="text" name="country" value="United Kingdom">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-fieldset">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="createdAt">Issue Date</label>
+              <input class="form-control" type="text" name="createdAt" value="21 Aug 2021">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="paymentTerms">Payment Terms</label>
+              <input class="form-control" type="text" name="paymentTerms" value="Next 30 Days">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="projectDescription">Project Description</label>
+            <input class="form-control" type="text" name="projectDescription" value="Graphic Design">
+          </div>
+        </fieldset>
+
+        <div class="form-table">
+          <div class="form-table-title">Item List</div>
+          <div class="form-table-header">
+            <div class="form-table-row">
+            <div class="form-table-column name">Item Name</div>
+            <div class="form-table-column quantity">Qty.</div>
+            <div class="form-table-column price">Price</div>
+            <div class="form-table-column total">Total</div>
+            <div class="form-table-column actions"></div>
+          </div>
+          </div>
+          <div class="form-table-body">
+            <div class="form-table-row">
+              <div class="form-table-column name">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="name" value="Banner Design">
+                </div>
+              </div>
+              <div class="form-table-column quantity">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="quantity" value="1">
+                </div>
+              </div>
+              <div class="form-table-column price">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="quantity" value="156.00">
+                </div>
+              </div>
+              <div class="form-table-column total">
+                <div class="form-table-value">156.00</div>
+              </div>
+              <div class="form-table-column actions">
+                <em class="icon icon-delete"></em>
+              </div>
+            </div>
+            <div class="form-table-row">
+              <div class="form-table-column name">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="name" value="Email Design">
+                </div>
+              </div>
+              <div class="form-table-column quantity">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="quantity" value="2">
+                </div>
+              </div>
+              <div class="form-table-column price">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="quantity" value="200.00">
+                </div>
+              </div>
+              <div class="form-table-column total">
+                <div class="form-table-value">200.00</div>
+              </div>
+              <div class="form-table-column actions">
+                <em class="icon icon-delete"></em>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="button button-default button-block">+ Add New Item</button>
+      </div>
+    </div>
+    <div class="form-actions">
+      <div class="form-actions-group">
+        <button class="button button-cancel">Discard</button>
+      </div>
+      <div class="form-actions-group">
+        <button class="button button-seccondary">Save as Draft</button>
+        <button class="button button-primary">Save & Send</button>
+      </div>
+    </div>
+  </div>
+</form>

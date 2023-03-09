@@ -1,0 +1,141 @@
+.backdrop
+  width: 100%
+  height: 100vh
+  overflow: hidden
+  top: 0
+  position: absolute
+  margin-left: 105px
+  background-color: var(--backdrop-background-color)
+
+.form
+  width: 616px
+  background-color: var(--form-background-color)
+  position: fixed
+  display: block
+  height: 100vh
+  top: 0
+  left: 100px
+
+  &-content
+    overflow-y: scroll
+    height: calc(100vh - 150px)
+    display: block
+    padding-right: 20px
+
+  &-title
+    margin-bottom: 50px
+
+  &-fieldset
+    border: none
+    margin: 0
+    padding: 0
+    margin-bottom: 20px
+
+  &-legend
+    color: var(--form-legend-color)
+    margin: 0
+    padding: 0
+    margin-bottom: 20px
+
+  &-group
+    width: 100%
+
+  &-label
+    font-weight: 300
+    margin-bottom: 10px
+    display: inline-block
+
+  &-control
+    outline: none
+    background-color: var(--form-input-background-color)
+    width: 100%
+    padding: 15px 20px
+    margin: 0
+    display: inline-block
+    border: 1px solid var(--form-input-border-color)
+    border-radius: 4px
+    box-sizing: border-box
+    color: var(--text-color)
+    font-weight: bold
+    margin-bottom: 20px
+    caret-color: var(--input-caret-color)
+
+    &:focus
+      border: 1px solid var(--form-input-focus-color)
+
+  &-row
+    display: flex
+    justify-content: space-between
+    gap: 24px
+
+  &-body
+    position: relative
+    padding: 30px
+    padding-top: 30px
+    padding-left: 50px
+    padding-right: 20px
+
+  &-actions
+    display: flex
+    justify-content: space-between
+    background-color: var(--background-color)
+    border-top-left-radius: var(--nav-bar-border-radius)
+    border-top-right-radius: var(--nav-bar-border-radius)
+    padding: 25px 50px
+    position: absolute
+    width: 616px
+    left: 0
+    bottom: 0
+    box-sizing: border-box
+
+    &-group
+      display: flex
+      gap: 8px
+
+  &-table
+    display: flex
+    flex-direction: column
+
+    .form-control
+      margin-bottom: 0
+
+    &-title
+      color: var(--form-title-color)
+      font-size: 22px
+      font-weight: bold
+      margin-bottom: 15px
+
+    &-header
+      display: flex
+
+    &-row
+      display: flex
+      width: 100%
+      gap: 15px
+      margin-bottom: 20px
+
+    &-value
+      width: 100%
+
+    &-column
+      display: flex
+      align-items: center
+
+      &.name
+        width: 50%
+
+      &.quantity
+        width: 11%
+
+      &.price
+        width: 19%
+
+      &.total
+        width: 15%
+        text-align: center
+        justify-content: center
+        align-items: center
+
+      &.actions
+        width: 5%
+        margin-top: -5px

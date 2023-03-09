@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'styles/main'
+
+*,
+*:before,
+*:after
+  box-sizing: border-box
+
+.noscroll
+  overflow: hidden
+
+::-webkit-scrollbar
+  width: 10px
+
+::-webkit-scrollbar-track
+  background: transprent
+
+::-webkit-scrollbar-thumb
+  background: var(--scroll-color)
+  border-radius: 5px
+
+::-webkit-scrollbar-thumb:hover
+  background: var(--scroll-color)
