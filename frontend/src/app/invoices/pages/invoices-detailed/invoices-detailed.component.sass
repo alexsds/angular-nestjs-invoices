@@ -27,3 +27,92 @@
 .actions
   display: flex
   gap: 10px
+
+.invoice
+  background-color: var(--primary-color)
+  padding: 40px
+  border-radius: var(--border-radius)
+  margin-top: 24px
+
+  &-row
+    display: flex
+    justify-content: space-between
+    margin-bottom: 20px
+
+    &-flex-start
+      justify-content: flex-start
+      gap: 90px
+
+  &-column
+    display: flex
+    flex-direction: column
+    gap: 30px
+
+    &-label
+      font-weight: 200
+      margin-bottom: 14px
+
+  &-id
+    font-weight: bold
+    font-size: 22px
+    margin-bottom: 14px
+
+    &-prefix
+      color: var(--purple-color)
+
+  &-address,
+  &-description
+    font-weight: 200
+    line-height: 20px
+
+  &-date
+    font-size: 22px
+    font-weight: bold
+
+  &-client-email,
+  &-client-name
+    font-weight: bold
+    font-size: 20px
+    margin-bottom: 10px
+
+.invoice-table
+  background-color: #252946
+  border-radius: var(--border-radius)
+  margin-top: 50px
+  padding-top: 20px
+
+  &-header,
+  &-row,
+  &-footer
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 20px 30px
+
+  &-column
+    &-1
+      width: 40%
+    &-2
+      width: 20%
+      text-align: center
+    &-3
+      width: 20%
+      flex-basis: 100px
+    &-4
+      width: 20%
+      flex: 0
+
+  &-header
+    font-weight: 300
+
+  &-body
+    font-weight: 600
+
+  &-footer
+    background-color: #0B0E15
+    border-bottom-left-radius: var(--border-radius)
+    border-bottom-right-radius: var(--border-radius)
+
+  &-price
+    font-weight: bold
+    font-size: 32px

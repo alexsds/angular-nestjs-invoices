@@ -15,4 +15,99 @@
             <button class="button button-primary">Mark as Paid</button>
         </div>
     </div>
+    <div class="invoice">
+        <div class="invoice-row">
+            <div class="invoice-column">
+                <div class="invoice-field">
+                    <div class="invoice-id">
+                        <span class="invoice-id-prefix">#</span>{{invoice.id}}
+                    </div>
+                    <div class="invoice-description">
+                        {{invoice.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-column">
+                <div class="invoice-address">
+                    {{invoice.senderAddress.street}}
+                    <br>
+                    {{invoice.senderAddress.city}}
+                    <br>
+                    {{invoice.senderAddress.postCode}}
+                    <br>
+                    {{invoice.senderAddress.country}}
+                </div>
+            </div>
+        </div>
+        <div class="invoice-row invoice-row-flex-start">
+            <div class="invoice-column">
+                <div class="invoice-field">
+                    <div class="invoice-column-label">
+                        Invoice Date
+                    </div>
+                    <div class="invoice-date">
+                        {{invoice.createdAt | date: 'd MMM y'}}
+                    </div>
+                </div>
+                <div class="invoice-field">
+                    <div class="invoice-column-label">
+                        Payment Due
+                    </div>
+                    <div class="invoice-date">
+                        {{invoice.paymentDue | date: 'd MMM y'}}
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-column">
+                <div class="invoice-field">
+                    <div class="invoice-column-label">
+                        Bill To
+                    </div>
+                    <div class="invoice-client-name">
+                        {{invoice.clientName}}
+                    </div>
+                    <div class="invoice-address">
+                        {{invoice.clientAddress.street}}
+                        <br>
+                        {{invoice.clientAddress.city}}
+                        <br>
+                        {{invoice.clientAddress.postCode}}
+                        <br>
+                        {{invoice.clientAddress.country}}
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-column">
+                <div class="invoice-field">
+                    <div class="invoice-column-label">
+                        Send to
+                    </div>
+                    <div class="invoice-client-email">
+                        {{invoice.clientEmail}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="invoice-table">
+            <div class="invoice-table-header">
+                <div class="invoice-table-column invoice-table-column-1">Item Name</div>
+                <div class="invoice-table-column invoice-table-column-2">QTY.</div>
+                <div class="invoice-table-column invoice-table-column-3">Price</div>
+                <div class="invoice-table-column invoice-table-column-4">Total</div>
+            </div>
+            <div class="invoice-table-body">
+                <div *ngFor="let item of invoice.items" class="invoice-table-row">
+                    <div class="invoice-table-column invoice-table-column-1">{{item.name}}</div>
+                    <div class="invoice-table-column invoice-table-column-2">{{item.quantity}}</div>
+                    <div class="invoice-table-column invoice-table-column-3">&#65505;{{item.price}}.00</div>
+                    <div class="invoice-table-column invoice-table-column-4">&#65505;{{item.total}}.00</div>
+                </div>
+            </div>
+            <div class="invoice-table-footer">
+                <div class="invoice-table-text">Amount Due</div>
+                <div class="invoice-table-price">&#65505;{{invoice.total}}.00</div>
+            </div>
+        </div>
+    </div>
 </ng-container>
