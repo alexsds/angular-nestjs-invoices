@@ -28,6 +28,10 @@ export class InvoiceService {
     this.invoices = invoices;
   }
 
+  reset(): void {
+    this.invoices = invoices;
+  }
+
   private removeObjectWithId(arr, id) {
     return arr.filter((obj) => obj.id !== id);
   }
