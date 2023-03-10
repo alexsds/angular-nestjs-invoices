@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   private readonly CLASS_THEME_DARK = 'theme-dark';
   private readonly CLASS_THEME_LIGHT = 'theme-light';
 
-  title = 'frontend';
+  title = 'Invoices';
   isOpenForm = false;
   isOpenModal = false;
 
