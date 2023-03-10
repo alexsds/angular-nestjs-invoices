@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Invoice } from '../../invoices/models/invoice';
+import { InvoiceStatus } from '../../invoices/emums/invoice-status.enum';
 
 export const loadInvoices = createAction('[Invoice] Load');
 export const loadInvoicesSuccess = createAction('[Invoice] Load Success', props<{ invoices: Invoice[] }>());
@@ -20,3 +21,6 @@ export const updateInvoiceFailure = createAction('[Invoice] Update Failure', pro
 export const createInvoice = createAction('[Invoice] Create', props<{ invoice: Invoice; isDraft: boolean }>());
 export const createInvoiceSuccess = createAction('[Invoice] Create Success', props<{ invoice: Invoice }>());
 export const createInvoiceFailure = createAction('[Invoice] Create Failure', props<{ error: any }>());
+
+export const filterInvoiceByStatus = createAction('[Invoice] Filter By Status', props<{ status: InvoiceStatus }>());
+export const clearInvoiceFilter = createAction('[Invoice] Clear Filter');

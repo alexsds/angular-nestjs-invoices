@@ -77,3 +77,39 @@
     margin: 0
     text-align: center
     font-weight: 300
+
+.actions
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 30px
+
+.filter
+  display: flex
+  justify-content: center
+  align-items: center
+
+  &-button
+    background: transparent
+    border: none
+    color: var(--text-color)
+    outline: none
+    padding: 15px 15px
+    cursor: pointer
+    font-size: 13px
+    font-weight: bold
+
+    &:after
+      content: ''
+      display: inline-block
+      height: 7px
+      width: 11px
+      margin-left: 10px
+      background-image: url('../../../../assets/icons/icon-arrow-down.svg')
+      background-repeat: no-repeat
+
+  &-action
+    display: inline-block
+    cursor: pointer
+    padding: 10px
+    color: var(--primary-color-hover)

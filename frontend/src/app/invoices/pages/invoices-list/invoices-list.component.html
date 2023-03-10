@@ -1,4 +1,4 @@
-<ng-container *ngIf="invoices$ | async; let invoices">
+<ng-container *ngIf="invoices.length > 0">
   <div class="page-header">
     <div class="headline">
       <h1 class="headline-title">Invoices</h1>
@@ -10,6 +10,26 @@
       </p>
     </div>
     <div class="actions">
+      <div class="filter">
+        <button type="button" [matMenuTriggerFor]="menu" class="filter-button">
+          <span *ngIf="!activeFilter">Filter by status</span>
+          <span *ngIf="activeFilter">{{activeFilter | titlecase}}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let status of statuses"
+                  (click)="onClickFilterItem(status)"
+                  [ngClass]="{active: activeFilter === status}"
+                  mat-menu-item>
+            {{status | titlecase}}
+          </button>
+        </mat-menu>
+        <div *ngIf="activeFilter"
+             title="Clear filter"
+             class="filter-action"
+             (click)="onClickClearFilterAction()">
+          &#10005;
+        </div>
+      </div>
       <button class="button button-primary button-with-icon" (click)="onClickNewInvoice()">
         <span class="button-icon"><em class="icon icon-plus"></em></span>
         New Invoice

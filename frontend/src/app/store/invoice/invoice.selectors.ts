@@ -10,3 +10,6 @@ export const selectInvoiceById = (id: string) =>
       return item.id === id;
     }) as Invoice;
   });
+export const selectStatuses = createSelector(selectInvoiceState, (state) => state.statuses);
+export const selectActiveFilter = createSelector(selectInvoiceState, (state) => state.activeFilter);
+export const selectFilteredInvoices = createSelector(selectInvoiceState, (state) => state.filteredInvoices);
