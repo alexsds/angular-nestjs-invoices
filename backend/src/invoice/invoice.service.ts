@@ -4,6 +4,7 @@ import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { Invoice } from './entities/invoice.entity';
 import { InvoiceStatus } from './emums/invoice-status.enum';
+import { PaymentTerms } from './emums/payment-terms.enum';
 
 @Injectable()
 export class InvoiceService {
@@ -24,6 +25,7 @@ export class InvoiceService {
       invoice.status = InvoiceStatus.PENDING;
     }
     invoice.total = this.getTotal(invoice);
+    invoice.paymentDue = this.getPaymentDue(invoice);
     this.invoices.set(id, invoice);
     return invoice;
   }
@@ -46,6 +48,7 @@ export class InvoiceService {
       const updatedInvoice = { ...invoice, ...updateInvoiceDto.invoice };
       updatedInvoice.status = InvoiceStatus.PENDING;
       updatedInvoice.total = this.getTotal(updatedInvoice);
+      updatedInvoice.paymentDue = this.getPaymentDue(updatedInvoice);
       this.invoices.set(id, updatedInvoice);
       return updatedInvoice;
     }
@@ -105,5 +108,17 @@ export class InvoiceService {
     data.forEach((item) => {
       this.invoices.set(item.id, { ...(item as Invoice) });
     });
+  }
+
+  private getPaymentDue(invoice: Invoice): string {
+    if (!invoice.createdAt) {
+      invoice.createdAt = new Date().toISOString().split('T')[0];
+    }
+    if (!invoice.paymentDue) {
+      invoice.paymentTerms = PaymentTerms.MOUTH;
+    }
+    const createdAt = new Date(invoice.createdAt);
+    createdAt.setDate(createdAt.getDate() + invoice.paymentTerms);
+    return createdAt.toISOString().split('T')[0];
   }
 }
