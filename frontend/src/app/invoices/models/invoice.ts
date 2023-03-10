@@ -1,4 +1,4 @@
-import { InvoiceStatus } from "src/app/emums/invoice-status.enum";
+import { InvoiceStatus } from "src/app/invoices/emums/invoice-status.enum";
 
 export interface Invoice {
   id: string;

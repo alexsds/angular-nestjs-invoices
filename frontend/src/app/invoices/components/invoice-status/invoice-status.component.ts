@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { InvoiceStatus } from 'src/app/emums/invoice-status.enum';
+import { InvoiceStatus } from 'src/app/invoices/emums/invoice-status.enum';
 
 @Component({
   selector: 'app-invoice-status',
