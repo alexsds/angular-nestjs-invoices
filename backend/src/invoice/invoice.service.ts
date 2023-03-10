@@ -32,6 +32,10 @@ export class InvoiceService {
     this.invoices = invoices;
   }
 
+  clean(): void {
+    this.invoices = [];
+  }
+
   private removeObjectWithId(arr, id) {
     return arr.filter((obj) => obj.id !== id);
   }

@@ -15,4 +15,9 @@ export class AppController {
   reset(): void {
     this.invoiceService.reset();
   }
+
+  @Get('clean')
+  clean(): void {
+    this.invoiceService.clean();
+  }
 }
