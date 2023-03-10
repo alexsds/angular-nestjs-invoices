@@ -31,4 +31,9 @@ export class InvoiceController {
   remove(@Param('id') id: string) {
     return this.invoiceService.remove(id);
   }
+
+  @Post('mark-as-paid/:id')
+  markAsPaid(@Param('id') id: string) {
+    return this.invoiceService.markAsPaid(id);
+  }
 }

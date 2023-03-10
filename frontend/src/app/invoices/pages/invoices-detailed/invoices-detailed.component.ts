@@ -49,4 +49,8 @@ export class InvoicesDetailedComponent {
         }
       });
   }
+
+  onClickMarkAsPaidAction(): void {
+    this.invoicesService.markAsPaid(this.invoiceId).pipe(take(1)).subscribe();
+  }
 }

@@ -20,6 +20,7 @@
         Delete
       </button>
       <button *ngIf="invoice.status !== InvoiceStatus.PAID && invoice.status !== InvoiceStatus.DRAFT"
+              (click)="onClickMarkAsPaidAction()"
               class="button button-primary">
         Mark as Paid
       </button>

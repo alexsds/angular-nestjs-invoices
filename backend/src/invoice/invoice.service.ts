@@ -55,6 +55,15 @@ export class InvoiceService {
     this.invoices.delete(id);
   }
 
+  markAsPaid(id: string) {
+    const invoice = this.findOne(id);
+    if (invoice && invoice.status === InvoiceStatus.PENDING) {
+      invoice.status = InvoiceStatus.PAID;
+      this.invoices.set(id, invoice);
+      return invoice;
+    }
+  }
+
   reset(): void {
     this.initInvoices();
   }

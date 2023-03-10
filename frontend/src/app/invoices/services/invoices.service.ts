@@ -46,4 +46,12 @@ export class InvoicesService {
 
     return this.http.delete<void>(`${environment.apiUrl.invoices.one}/${id}`);
   }
+
+  markAsPaid(id: string): Observable<Invoice> {
+    if (environment.mock) {
+      return this.http.get<Invoice>(environment.apiUrl.invoices.markAsPaid);
+    }
+
+    return this.http.post<Invoice>(`${environment.apiUrl.invoices.markAsPaid}/${id}`, {});
+  }
 }

@@ -7,6 +7,7 @@ export const environment = {
       one: 'http://localhost:3000/invoice',
       create: 'http://localhost:3000/invoice',
       update: 'http://localhost:3000/invoice',
+      markAsPaid: 'http://localhost:3000/invoice/mark-as-paid',
       remove: 'http://localhost:3000/invoice',
     },
   },
