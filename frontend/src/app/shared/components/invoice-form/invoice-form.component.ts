@@ -74,6 +74,15 @@ export class InvoiceFormComponent implements OnInit {
     this.invoiceFormService.toggleForm();
   }
 
+  onClickSaveAsDraft(): void {
+    this.invoicesService
+      .create(this.form?.value, true)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.invoiceFormService.toggleForm();
+      });
+  }
+
   private createForm(): void {
     this.form = this.fb.group({
       senderAddress: this.fb.group({

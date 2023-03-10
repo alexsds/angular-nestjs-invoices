@@ -1,22 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { invoices } from './constants/data';
+import { data } from './constants/data';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
+import { Invoice } from './entities/invoice.entity';
+import { InvoiceStatus } from './emums/invoice-status.enum';
 
 @Injectable()
 export class InvoiceService {
-  private invoices = invoices;
+  private invoices: Map<string, Invoice> = new Map<string, Invoice>();
+
+  constructor() {
+    this.initInvoices();
+  }
 
   create(createInvoiceDto: CreateInvoiceDto) {
-    return 'This action adds a new invoice';
+    const id = this.generateNextId();
+    const invoice = createInvoiceDto.invoice;
+    invoice.id = id;
+    if (createInvoiceDto.isDraft) {
+      invoice.status = InvoiceStatus.DRAFT;
+    }
+    this.invoices.set(id, invoice);
+    return { id };
   }
 
   findAll() {
-    return this.invoices;
+    const invoices = [];
+    this.invoices.forEach((item) => {
+      invoices.push(item);
+    });
+    return invoices;
   }
 
   findOne(id: string) {
-    return this.invoices.find((invoice) => invoice.id === id);
+    return this.invoices.get(id);
   }
 
   update(id: string, updateInvoiceDto: UpdateInvoiceDto) {
@@ -24,19 +41,42 @@ export class InvoiceService {
   }
 
   remove(id: string) {
-    const invoices = this.removeObjectWithId(this.invoices, id);
-    this.invoices = invoices;
+    this.invoices.delete(id);
   }
 
   reset(): void {
-    this.invoices = invoices;
+    this.initInvoices();
   }
 
   clean(): void {
-    this.invoices = [];
+    this.invoices = new Map<string, Invoice>();
+  }
+
+  private getPrefix(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  }
+
+  private generateNextId() {
+    const prefix = this.getPrefix(2);
+    const number = Math.random().toString().slice(2, 6);
+    return prefix + number;
   }
 
   private removeObjectWithId(arr, id) {
     return arr.filter((obj) => obj.id !== id);
+  }
+
+  private initInvoices(): void {
+    data.forEach((item) => {
+      this.invoices.set(item.id, item as Invoice);
+    });
   }
 }

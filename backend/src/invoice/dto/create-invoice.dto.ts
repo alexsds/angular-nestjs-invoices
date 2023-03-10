@@ -1,1 +1,6 @@
-export class CreateInvoiceDto {}
+import { Invoice } from '../entities/invoice.entity';
+
+export class CreateInvoiceDto {
+  invoice: Invoice;
+  isDraft: boolean;
+}
