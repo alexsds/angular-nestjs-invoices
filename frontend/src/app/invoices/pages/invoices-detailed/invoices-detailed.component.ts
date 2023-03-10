@@ -11,7 +11,7 @@ import { InvoicesService } from '../../services/invoices.service';
 @Component({
   selector: 'app-invoices-detailed',
   templateUrl: './invoices-detailed.component.html',
-  styleUrls: ['./invoices-detailed.component.sass']
+  styleUrls: ['./invoices-detailed.component.sass'],
 })
 export class InvoicesDetailedComponent {
   invoiceId: string;
@@ -33,12 +33,18 @@ export class InvoicesDetailedComponent {
   }
 
   onClickDeleteAction(): void {
-    this.modalService.open({ id: this.invoiceId }).pipe(untilDestroyed(this)).subscribe((confirmed) => {
-      if (confirmed) {
-        this.invoicesService.remove(this.invoiceId).pipe(take(1)).subscribe(() => {
-          this.router.navigate(['../']);
-        });
-      }
-    });
+    this.modalService
+      .open({ id: this.invoiceId })
+      .pipe(untilDestroyed(this))
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          this.invoicesService
+            .remove(this.invoiceId)
+            .pipe(take(1))
+            .subscribe(() => {
+              this.router.navigate(['../']);
+            });
+        }
+      });
   }
 }

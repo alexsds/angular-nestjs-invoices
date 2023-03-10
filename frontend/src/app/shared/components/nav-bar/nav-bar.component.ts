@@ -6,7 +6,7 @@ import { ThemesService } from '../../services/themes.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.sass']
+  styleUrls: ['./nav-bar.component.sass'],
 })
 export class NavBarComponent {
   Theme = Theme;

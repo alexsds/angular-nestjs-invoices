@@ -9,9 +9,13 @@ import { ThemesService } from './shared/services/themes.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
+  private readonly CLASS_NO_SCROLL = 'noscroll';
+  private readonly CLASS_THEME_DARK = 'theme-dark';
+  private readonly CLASS_THEME_LIGHT = 'theme-light';
+
   title = 'frontend';
   isOpenForm = false;
   isOpenModal = false;
@@ -22,8 +26,7 @@ export class AppComponent implements OnInit {
     private themesService: ThemesService,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     combineLatest([
@@ -34,17 +37,17 @@ export class AppComponent implements OnInit {
       this.isOpenForm = isOpenForm;
       this.isOpenModal = isOpenModal;
       if (this.isOpenForm || this.isOpenModal) {
-        this.renderer.addClass(this.document.body, 'noscroll');
+        this.renderer.addClass(this.document.body, this.CLASS_NO_SCROLL);
       } else {
-        this.renderer.removeClass(this.document.body, 'noscroll');
+        this.renderer.removeClass(this.document.body, this.CLASS_NO_SCROLL);
       }
 
       if (theme === Theme.DARK) {
-        this.renderer.removeClass(this.document.body, 'theme-light');
-        this.renderer.addClass(this.document.body, 'theme-dark');
+        this.renderer.removeClass(this.document.body, this.CLASS_THEME_LIGHT);
+        this.renderer.addClass(this.document.body, this.CLASS_THEME_DARK);
       } else {
-        this.renderer.removeClass(this.document.body, 'theme-dark');
-        this.renderer.addClass(this.document.body, 'theme-light');
+        this.renderer.removeClass(this.document.body, this.CLASS_THEME_DARK);
+        this.renderer.addClass(this.document.body, this.CLASS_THEME_LIGHT);
       }
     });
   }

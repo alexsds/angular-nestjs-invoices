@@ -5,7 +5,7 @@ import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-confirmation-modal',
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['./confirmation-modal.component.sass']
+  styleUrls: ['./confirmation-modal.component.sass'],
 })
 export class ConfirmationModalComponent {
   data: ModalData<{ id: string }>;

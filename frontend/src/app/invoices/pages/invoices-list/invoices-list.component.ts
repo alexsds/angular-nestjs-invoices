@@ -7,10 +7,10 @@ import { InvoicesService } from '../../services/invoices.service';
 @Component({
   selector: 'app-invoices-list',
   templateUrl: './invoices-list.component.html',
-  styleUrls: ['./invoices-list.component.sass']
+  styleUrls: ['./invoices-list.component.sass'],
 })
 export class InvoicesListComponent {
-  invoices$: Observable<Invoice[]>
+  invoices$: Observable<Invoice[]>;
 
   constructor(private invoicesService: InvoicesService, private invoiceFormService: InvoiceFormService) {
     this.invoices$ = this.invoicesService.getInvoices();

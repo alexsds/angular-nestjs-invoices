@@ -1,4 +1,4 @@
-import { InvoiceStatus } from "src/app/invoices/emums/invoice-status.enum";
+import { InvoiceStatus } from 'src/app/invoices/emums/invoice-status.enum';
 
 export interface Invoice {
   id: string;
@@ -14,20 +14,20 @@ export interface Invoice {
     city: string;
     postCode: string;
     country: string;
-  },
+  };
   clientAddress: {
     street: string;
     city: string;
     postCode: string;
     country: string;
-  },
+  };
   items: [
     {
       name: string;
       quantity: number;
       price: number;
       total: number;
-    }
-  ],
+    },
+  ];
   total: number;
 }

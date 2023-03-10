@@ -6,8 +6,7 @@ import { Invoice } from '../models/invoice';
 
 @Injectable()
 export class InvoicesService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(environment.apiUrl.invoices.list);

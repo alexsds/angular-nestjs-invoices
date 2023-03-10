@@ -8,18 +8,8 @@ import { InvoicesDetailedComponent } from './pages/invoices-detailed/invoices-de
 import { InvoiceStatusComponent } from './components/invoice-status/invoice-status.component';
 
 @NgModule({
-  declarations: [
-    InvoicesListComponent,
-    InvoicesDetailedComponent,
-    InvoiceStatusComponent,
-  ],
-  providers: [
-    InvoicesService,
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    InvoicesRoutingModule,
-  ]
+  declarations: [InvoicesListComponent, InvoicesDetailedComponent, InvoiceStatusComponent],
+  providers: [InvoicesService],
+  imports: [CommonModule, HttpClientModule, InvoicesRoutingModule],
 })
-export class InvoicesModule { }
+export class InvoicesModule {}

@@ -4,7 +4,7 @@ import { InvoiceService } from './invoice/invoice.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private readonly invoiceService: InvoiceService) { }
+  constructor(private readonly appService: AppService, private readonly invoiceService: InvoiceService) {}
 
   @Get()
   getHello(): string {

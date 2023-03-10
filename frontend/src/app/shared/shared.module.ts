@@ -5,18 +5,8 @@ import { InvoiceFormComponent } from './components/invoice-form/invoice-form.com
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
-  declarations: [
-    NavBarComponent,
-    InvoiceFormComponent,
-    ConfirmationModalComponent,
-  ],
-  imports: [
-    CommonModule,
-  ],
-  exports: [
-    NavBarComponent,
-    InvoiceFormComponent,
-    ConfirmationModalComponent,
-  ]
+  declarations: [NavBarComponent, InvoiceFormComponent, ConfirmationModalComponent],
+  imports: [CommonModule],
+  exports: [NavBarComponent, InvoiceFormComponent, ConfirmationModalComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Theme } from '../enums/theme.enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemesService {
   private activeTheme$: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.DARK);
