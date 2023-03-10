@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { InvoiceFormService } from 'src/app/shared/services/invoice-form.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { Invoice } from '../../models/invoice';
-import { InvoicesService } from '../../services/invoices.service';
 import { InvoiceStatus } from '../../emums/invoice-status.enum';
+import { selectInvoiceById } from '../../../store/invoice/invoice.selectors';
+import { deleteInvoice, markAsPaidInvoice } from '../../../store/invoice/invoice.actions';
 
 @UntilDestroy()
 @Component({
@@ -21,13 +23,12 @@ export class InvoicesDetailedComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private invoicesService: InvoicesService,
+    private store: Store,
     private invoiceFormService: InvoiceFormService,
     private modalService: ModalService,
-    private router: Router,
   ) {
     this.invoiceId = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.invoice$ = this.invoicesService.getOneById(this.invoiceId);
+    this.invoice$ = this.store.select(selectInvoiceById(this.invoiceId));
   }
 
   onClickEditAction(): void {
@@ -40,17 +41,12 @@ export class InvoicesDetailedComponent {
       .pipe(untilDestroyed(this))
       .subscribe((confirmed) => {
         if (confirmed) {
-          this.invoicesService
-            .remove(this.invoiceId)
-            .pipe(take(1))
-            .subscribe(() => {
-              this.router.navigate(['../']);
-            });
+          this.store.dispatch(deleteInvoice({ id: this.invoiceId }));
         }
       });
   }
 
   onClickMarkAsPaidAction(): void {
-    this.invoicesService.markAsPaid(this.invoiceId).pipe(take(1)).subscribe();
+    this.store.dispatch(markAsPaidInvoice({ id: this.invoiceId }));
   }
 }

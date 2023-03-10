@@ -5,6 +5,8 @@ import { Theme } from './shared/enums/theme.enum';
 import { InvoiceFormService } from './shared/services/invoice-form.service';
 import { ModalService } from './shared/services/modal.service';
 import { ThemesService } from './shared/services/themes.service';
+import { Store } from '@ngrx/store';
+import { loadInvoices } from './store/invoice/invoice.actions';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit {
   isOpenModal = false;
 
   constructor(
+    private store: Store,
     private invoiceFormService: InvoiceFormService,
     private modalService: ModalService,
     private themesService: ThemesService,
@@ -29,6 +32,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(loadInvoices());
     combineLatest([
       this.invoiceFormService.isOpen(),
       this.modalService.isOpen(),

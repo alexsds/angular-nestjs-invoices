@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InvoiceFormService } from 'src/app/shared/services/invoice-form.service';
 import { Invoice } from '../../models/invoice';
-import { InvoicesService } from '../../services/invoices.service';
+import { Store } from '@ngrx/store';
+import { selectInvoices } from '../../../store/invoice/invoice.selectors';
 
 @Component({
   selector: 'app-invoices-list',
@@ -12,8 +13,8 @@ import { InvoicesService } from '../../services/invoices.service';
 export class InvoicesListComponent {
   invoices$: Observable<Invoice[]>;
 
-  constructor(private invoicesService: InvoicesService, private invoiceFormService: InvoiceFormService) {
-    this.invoices$ = this.invoicesService.getInvoices();
+  constructor(private store: Store, private invoiceFormService: InvoiceFormService) {
+    this.invoices$ = this.store.select(selectInvoices);
   }
 
   onClickNewInvoice(): void {

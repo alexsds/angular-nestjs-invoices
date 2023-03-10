@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceFormService } from '../../services/invoice-form.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { InvoicesService } from '../../../invoices/services/invoices.service';
 import { Invoice } from '../../../invoices/models/invoice';
 import { take } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { createInvoice, updateInvoice } from '../../../store/invoice/invoice.actions';
+import { selectInvoiceById } from '../../../store/invoice/invoice.selectors';
 
 type Mode = 'edit' | 'new';
 
@@ -17,11 +19,7 @@ export class InvoiceFormComponent implements OnInit {
   invoice: Invoice | undefined;
   form: FormGroup | undefined;
 
-  constructor(
-    private fb: FormBuilder,
-    private invoiceFormService: InvoiceFormService,
-    private invoicesService: InvoicesService,
-  ) {}
+  constructor(private fb: FormBuilder, private invoiceFormService: InvoiceFormService, private store: Store) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -83,12 +81,7 @@ export class InvoiceFormComponent implements OnInit {
     if (this.form?.valid) {
       const values = this.form?.value;
       const id = this.invoice?.id as string;
-      this.invoicesService
-        .update(id, values)
-        .pipe(take(1))
-        .subscribe(() => {
-          this.invoiceFormService.toggleForm();
-        });
+      this.store.dispatch(updateInvoice({ id, invoice: values }));
     }
   }
 
@@ -105,25 +98,14 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   onClickSaveAsDraft(): void {
-    this.invoicesService
-      .create(this.form?.value, true)
-      .pipe(take(1))
-      .subscribe(() => {
-        this.invoiceFormService.toggleForm();
-      });
+    this.store.dispatch(createInvoice({ invoice: this.form?.value, isDraft: true }));
   }
 
   onClickSaveAndSend(): void {
     this.markAllAsRequired();
     this.form?.markAllAsTouched();
     if (this.form?.valid) {
-      const values = this.form?.value;
-      this.invoicesService
-        .create(values, false)
-        .pipe(take(1))
-        .subscribe(() => {
-          this.invoiceFormService.toggleForm();
-        });
+      this.store.dispatch(createInvoice({ invoice: this.form?.value, isDraft: false }));
     }
   }
 
@@ -178,8 +160,8 @@ export class InvoiceFormComponent implements OnInit {
   private setValues(): void {
     const invoiceId = this.invoiceFormService.getInvoiceId();
     if (invoiceId) {
-      this.invoicesService
-        .getOneById(invoiceId)
+      this.store
+        .select(selectInvoiceById(invoiceId))
         .pipe(take(1))
         .subscribe((invoice) => {
           this.invoice = invoice;

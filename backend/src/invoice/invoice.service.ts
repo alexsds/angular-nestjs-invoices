@@ -25,7 +25,7 @@ export class InvoiceService {
     }
     invoice.total = this.getTotal(invoice);
     this.invoices.set(id, invoice);
-    return { id };
+    return invoice;
   }
 
   findAll() {
