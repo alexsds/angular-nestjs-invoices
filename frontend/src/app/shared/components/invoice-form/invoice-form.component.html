@@ -1,27 +1,27 @@
 <div class="backdrop" (click)="onClickOutsideForm()"></div>
-<form>
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form">
     <div class="form-body">
       <div class="form-content">
         <h1 class="form-title">New Invoice</h1>
-        <fieldset class="form-fieldset">
+        <fieldset class="form-fieldset" formGroupName="senderAddress">
           <legend class="form-legend">Bill From</legend>
           <div class="form-group">
-            <label class="form-label" for="street">Street address</label>
-            <input class="form-control" type="text" name="street" value="19 Union Terrace">
+            <label class="form-label" for="sender-address-street">Street address</label>
+            <input class="form-control" type="text" id="sender-address-street" formControlName="street">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="city">City</label>
-              <input class="form-control" type="text" name="city" value="London">
+              <label class="form-label" for="sender-address-city">City</label>
+              <input class="form-control" type="text" id="sender-address-city" formControlName="city">
             </div>
             <div class="form-group">
-              <label class="form-label" for="post-code">Post Code</label>
-              <input class="form-control" type="text" name="post-code" value="E1 3EZ">
+              <label class="form-label" for="sender-address-post-code">Post Code</label>
+              <input class="form-control" type="text" id="sender-address-post-code" formControlName="postCode">
             </div>
             <div class="form-group">
-              <label class="form-label" for="country">Country</label>
-              <input class="form-control" type="text" name="country" value="United Kingdom">
+              <label class="form-label" for="sender-address-country">Country</label>
+              <input class="form-control" type="text" id="sender-address-country" formControlName="country">
             </div>
           </div>
         </fieldset>
@@ -29,47 +29,49 @@
         <fieldset class="form-fieldset">
           <legend class="form-legend">Bill To</legend>
           <div class="form-group">
-            <label class="form-label" for="clientName">Client's Name</label>
-            <input class="form-control" type="text" name="clientName" value="Alex Grim">
+            <label class="form-label" for="client-name">Client's Name</label>
+            <input class="form-control" type="text" id="client-name" formControlName="clientName">
           </div>
           <div class="form-group">
-            <label class="form-label" for="clientEmail">Client's Email</label>
-            <input class="form-control" type="text" name="clientEmail" value="alexgrim@mail.com">
+            <label class="form-label" for="client-email">Client's Email</label>
+            <input class="form-control" type="text" id="client-email" formControlName="clientEmail">
           </div>
-          <div class="form-group">
-            <label class="form-label" for="street">Stree address</label>
-            <input class="form-control" type="text" name="street" value="84 Church Way">
-          </div>
-          <div class="form-row">
+          <ng-container formGroupName="clientAddress">
             <div class="form-group">
-              <label class="form-label" for="city">City</label>
-              <input class="form-control" type="text" name="city" value="Bradford">
+              <label class="form-label" for="client-address-street">Street address</label>
+              <input class="form-control" type="text" id="client-address-street" formControlName="street">
             </div>
-            <div class="form-group">
-              <label class="form-label" for="post-code">Post Code</label>
-              <input class="form-control" type="text" name="post-code" value="BD1 9PB">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="client-address-city">City</label>
+                <input class="form-control" type="text" id="client-address-city" formControlName="city">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="client-address-post-code">Post Code</label>
+                <input class="form-control" type="text" id="client-address-post-code" formControlName="postCode">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="client-address-country">Country</label>
+                <input class="form-control" type="text" id="client-address-country" formControlName="country">
+              </div>
             </div>
-            <div class="form-group">
-              <label class="form-label" for="country">Country</label>
-              <input class="form-control" type="text" name="country" value="United Kingdom">
-            </div>
-          </div>
+          </ng-container>
         </fieldset>
 
         <fieldset class="form-fieldset">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="createdAt">Issue Date</label>
-              <input class="form-control" type="text" name="createdAt" value="21 Aug 2021">
+              <label class="form-label" for="created-at">Issue Date</label>
+              <input class="form-control" type="text" id="created-at" formControlName="createdAt">
             </div>
             <div class="form-group">
-              <label class="form-label" for="paymentTerms">Payment Terms</label>
-              <input class="form-control" type="text" name="paymentTerms" value="Next 30 Days">
+              <label class="form-label" for="payment-terms">Payment Terms</label>
+              <input class="form-control" type="text" id="payment-terms" formControlName="paymentTerms">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="projectDescription">Project Description</label>
-            <input class="form-control" type="text" name="projectDescription" value="Graphic Design">
+            <label class="form-label" for="description">Project Description</label>
+            <input class="form-control" type="text" id="description" formControlName="description">
           </div>
         </fieldset>
 
@@ -85,56 +87,37 @@
             </div>
           </div>
           <div class="form-table-body">
-            <div class="form-table-row">
-              <div class="form-table-column name">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="name" value="Banner Design">
-                </div>
+            <ng-container formArrayName="items">
+              <div class="form-table-row" *ngFor="let _ of items.controls; index as i">
+                <ng-container [formGroupName]="i">
+                  <div class="form-table-column name">
+                    <div class="form-group">
+                      <input class="form-control" type="text" formControlName="name">
+                    </div>
+                  </div>
+                  <div class="form-table-column quantity">
+                    <div class="form-group">
+                      <input class="form-control" type="text" formControlName="quantity">
+                    </div>
+                  </div>
+                  <div class="form-table-column price">
+                    <div class="form-group">
+                      <input class="form-control" type="text" formControlName="price">
+                    </div>
+                  </div>
+                  <div class="form-table-column total">
+                    <div class="form-table-value">{{getTotal(i)}}</div>
+                  </div>
+                  <div class="form-table-column actions" title="Remove Item" (click)="removeItem(i)">
+                    <em class="icon icon-delete"></em>
+                  </div>
+                </ng-container>
               </div>
-              <div class="form-table-column quantity">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="quantity" value="1">
-                </div>
-              </div>
-              <div class="form-table-column price">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="quantity" value="156.00">
-                </div>
-              </div>
-              <div class="form-table-column total">
-                <div class="form-table-value">156.00</div>
-              </div>
-              <div class="form-table-column actions">
-                <em class="icon icon-delete"></em>
-              </div>
-            </div>
-            <div class="form-table-row">
-              <div class="form-table-column name">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="name" value="Email Design">
-                </div>
-              </div>
-              <div class="form-table-column quantity">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="quantity" value="2">
-                </div>
-              </div>
-              <div class="form-table-column price">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="quantity" value="200.00">
-                </div>
-              </div>
-              <div class="form-table-column total">
-                <div class="form-table-value">200.00</div>
-              </div>
-              <div class="form-table-column actions">
-                <em class="icon icon-delete"></em>
-              </div>
-            </div>
+            </ng-container>
           </div>
         </div>
 
-        <button class="button button-default button-block">+ Add New Item</button>
+        <button type="button" class="button button-default button-block" (click)="addItem()">+ Add New Item</button>
       </div>
     </div>
     <div class="form-actions">
@@ -142,8 +125,8 @@
         <button class="button button-cancel">Discard</button>
       </div>
       <div class="form-actions-group">
-        <button class="button button-secondary">Save as Draft</button>
-        <button class="button button-primary">Save & Send</button>
+        <button type="submit" class="button button-secondary">Save as Draft</button>
+        <button type="submit" class="button button-primary">Save & Send</button>
       </div>
     </div>
   </div>
