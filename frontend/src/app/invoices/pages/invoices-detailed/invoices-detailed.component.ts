@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable, take } from 'rxjs';
 import { InvoiceFormService } from 'src/app/shared/services/invoice-form.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { Invoice } from '../../models/invoice';
 import { InvoicesService } from '../../services/invoices.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-invoices-detailed',
   templateUrl: './invoices-detailed.component.html',
   styleUrls: ['./invoices-detailed.component.sass']
 })
-export class InvoicesDetailedComponent implements OnInit {
+export class InvoicesDetailedComponent {
+  invoiceId: string;
   invoice$: Observable<Invoice>;
 
   constructor(
@@ -19,13 +22,10 @@ export class InvoicesDetailedComponent implements OnInit {
     private invoicesService: InvoicesService,
     private invoiceFormService: InvoiceFormService,
     private modalService: ModalService,
+    private router: Router,
   ) {
-    const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.invoice$ = this.invoicesService.getOneById(id);
-  }
-
-  ngOnInit(): void {
-
+    this.invoiceId = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.invoice$ = this.invoicesService.getOneById(this.invoiceId);
   }
 
   onClickEditAction(): void {
@@ -33,6 +33,12 @@ export class InvoicesDetailedComponent implements OnInit {
   }
 
   onClickDeleteAction(): void {
-    this.modalService.open();
+    this.modalService.open({ id: this.invoiceId }).pipe(untilDestroyed(this)).subscribe((confirmed) => {
+      if (confirmed) {
+        this.invoicesService.remove(this.invoiceId).pipe(take(1)).subscribe(() => {
+          this.router.navigate(['../']);
+        });
+      }
+    });
   }
 }

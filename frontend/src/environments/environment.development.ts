@@ -5,6 +5,7 @@ export const environment = {
     invoices: {
       list: '/mock/responses/invoices/list.json',
       one: '/mock/responses/invoices/one.json',
+      remove: '/mock/responses/invoices/one.json',
     },
   },
 };

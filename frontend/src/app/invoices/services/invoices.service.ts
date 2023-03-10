@@ -20,4 +20,12 @@ export class InvoicesService {
 
     return this.http.get<Invoice>(`${environment.apiUrl.invoices.one}/${id}`);
   }
+
+  remove(id: string): Observable<void> {
+    if (environment.mock) {
+      return this.http.get<void>(environment.apiUrl.invoices.one);
+    }
+
+    return this.http.delete<void>(`${environment.apiUrl.invoices.one}/${id}`);
+  }
 }

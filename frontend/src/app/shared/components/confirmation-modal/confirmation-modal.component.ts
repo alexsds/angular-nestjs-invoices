@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalData } from '../../models/modal-data';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -7,13 +8,17 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./confirmation-modal.component.sass']
 })
 export class ConfirmationModalComponent {
-  constructor(private modalService: ModalService) { }
+  data: ModalData<{ id: string }>;
+
+  constructor(private modalService: ModalService) {
+    this.data = this.modalService.getData<{ id: string }>();
+  }
 
   onClickCancelAction(): void {
-    this.modalService.close();
+    this.modalService.close(false);
   }
 
   onClickDeleteAction(): void {
-    this.modalService.close();
+    this.modalService.close(true);
   }
 }

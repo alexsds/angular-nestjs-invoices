@@ -24,6 +24,11 @@ export class InvoiceService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} invoice`;
+    const invoices = this.removeObjectWithId(this.invoices, id);
+    this.invoices = invoices;
+  }
+
+  private removeObjectWithId(arr, id) {
+    return arr.filter((obj) => obj.id !== id);
   }
 }
