@@ -1,9 +1,10 @@
 export const environment = {
   production: false,
+  mock: false,
   apiUrl: {
     invoices: {
       list: 'http://localhost:3000/invoice',
-      one: '/mock/responses/invoices/one.json',
+      one: 'http://localhost:3000/invoice',
     },
   },
 };

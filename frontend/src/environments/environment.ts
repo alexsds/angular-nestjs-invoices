@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  mock: false,
   apiUrl: {
     invoices: {
       list: '/mock/responses/invoices/list.json',

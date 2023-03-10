@@ -14,6 +14,10 @@ export class InvoicesService {
   }
 
   getOneById(id: string): Observable<Invoice> {
-    return this.http.get<Invoice>(environment.apiUrl.invoices.one);
+    if (environment.mock) {
+      return this.http.get<Invoice>(environment.apiUrl.invoices.one);
+    }
+
+    return this.http.get<Invoice>(`${environment.apiUrl.invoices.one}/${id}`);
   }
 }
