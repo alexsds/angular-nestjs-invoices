@@ -1,7 +1,7 @@
 <div class="nav-bar">
-  <div class="logo" title="Invoices">
+  <a class="logo" title="Invoices" [routerLink]="['/']">
     <img class="logo-image" src="../../../../assets/images/logo.svg" alt="Invoices">
-  </div>
+  </a>
   <div *ngIf="currentTheme$ | async; let currentTheme"
        (click)="onClickToggleTheme()"
        class="dark-mode-toggle"
