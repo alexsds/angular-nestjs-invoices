@@ -6,6 +6,7 @@ import { InvoiceFormService } from 'src/app/shared/services/invoice-form.service
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { Invoice } from '../../models/invoice';
 import { InvoicesService } from '../../services/invoices.service';
+import { InvoiceStatus } from '../../emums/invoice-status.enum';
 
 @UntilDestroy()
 @Component({
@@ -14,6 +15,7 @@ import { InvoicesService } from '../../services/invoices.service';
   styleUrls: ['./invoices-detailed.component.sass'],
 })
 export class InvoicesDetailedComponent {
+  InvoiceStatus = InvoiceStatus;
   invoiceId: string;
   invoice$: Observable<Invoice>;
 

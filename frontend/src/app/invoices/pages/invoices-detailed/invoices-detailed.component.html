@@ -10,9 +10,19 @@
       <app-invoice-status [status]="invoice.status"></app-invoice-status>
     </div>
     <div class="actions">
-      <button class="button button-secondary" (click)="onClickEditAction()">Edit</button>
-      <button class="button button-danger" (click)="onClickDeleteAction()">Delete</button>
-      <button class="button button-primary">Mark as Paid</button>
+      <button *ngIf="invoice.status !== InvoiceStatus.PAID"
+              class="button button-secondary"
+              (click)="onClickEditAction()">
+        Edit
+      </button>
+      <button class="button button-danger"
+              (click)="onClickDeleteAction()">
+        Delete
+      </button>
+      <button *ngIf="invoice.status !== InvoiceStatus.PAID && invoice.status !== InvoiceStatus.DRAFT"
+              class="button button-primary">
+        Mark as Paid
+      </button>
     </div>
   </div>
   <div class="invoice">
