@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceFormService } from '../../services/invoice-form.service';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InvoicesService } from '../../../invoices/services/invoices.service';
 import { Invoice } from '../../../invoices/models/invoice';
 import { take } from 'rxjs';
@@ -28,8 +28,26 @@ export class InvoiceFormComponent implements OnInit {
     this.setValues();
   }
 
-  get items() {
+  get items(): FormArray {
     return this.form?.get('items') as FormArray;
+  }
+
+  getSenderAddressInput(key: string): FormControl {
+    const group = this.form?.get('senderAddress') as FormGroup;
+    return group.get(key) as FormControl;
+  }
+
+  getClientAddressInput(key: string): FormControl {
+    const group = this.form?.get('clientAddress') as FormGroup;
+    return group.get(key) as FormControl;
+  }
+
+  getInput(key: string): FormControl {
+    return this.form?.get(key) as FormControl;
+  }
+
+  getItemInput(index: number, key: string): FormControl {
+    return this.items.at(index).get(key) as FormControl;
   }
 
   addItem(): void {
@@ -44,6 +62,7 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   removeItem(index: number) {
+    if (this.items.length === 1) return;
     this.items.removeAt(index);
   }
 
@@ -81,6 +100,45 @@ export class InvoiceFormComponent implements OnInit {
       .subscribe(() => {
         this.invoiceFormService.toggleForm();
       });
+  }
+
+  onClickSaveAndSend(): void {
+    this.markAllAsRequired();
+    this.form?.markAllAsTouched();
+    if (this.form?.valid) {
+      const values = this.form?.value;
+      this.invoicesService
+        .create(values, false)
+        .pipe(take(1))
+        .subscribe(() => {
+          this.invoiceFormService.toggleForm();
+        });
+    }
+  }
+
+  private markAllAsRequired(): void {
+    for (const field in this.form?.controls) {
+      const control = this.form?.get(field);
+      if (control instanceof FormGroup) {
+        for (const formGroupControl in control.controls) {
+          control.get(formGroupControl)?.setValidators(Validators.required);
+          control.get(formGroupControl)?.updateValueAndValidity();
+        }
+      }
+      if (control instanceof FormArray) {
+        for (const index in control.controls) {
+          const formArrayControls = this.items.at(+index) as FormGroup;
+          for (const formArrayControl in formArrayControls.controls) {
+            formArrayControls.get(formArrayControl)?.setValidators(Validators.required);
+            formArrayControls.get(formArrayControl)?.updateValueAndValidity();
+          }
+        }
+      }
+      if (control instanceof FormControl) {
+        control.setValidators(Validators.required);
+        control.updateValueAndValidity();
+      }
+    }
   }
 
   private createForm(): void {

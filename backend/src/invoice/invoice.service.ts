@@ -20,6 +20,17 @@ export class InvoiceService {
     if (createInvoiceDto.isDraft) {
       invoice.status = InvoiceStatus.DRAFT;
     }
+    if (!createInvoiceDto.isDraft) {
+      invoice.status = InvoiceStatus.PENDING;
+    }
+
+    invoice.total = 0;
+    invoice.items.forEach((item) => {
+      const totalItemPrice = item.price * item.quantity;
+      const total = Number(parseFloat(String(totalItemPrice)).toFixed(2));
+      invoice.total = invoice.total + total;
+    });
+
     this.invoices.set(id, invoice);
     return { id };
   }
@@ -70,11 +81,8 @@ export class InvoiceService {
     return prefix + number;
   }
 
-  private removeObjectWithId(arr, id) {
-    return arr.filter((obj) => obj.id !== id);
-  }
-
   private initInvoices(): void {
+    this.clean();
     data.forEach((item) => {
       this.invoices.set(item.id, item as Invoice);
     });

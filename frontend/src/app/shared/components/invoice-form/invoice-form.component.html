@@ -11,20 +11,52 @@
           <legend class="form-legend">Bill From</legend>
           <div class="form-group">
             <label class="form-label" for="sender-address-street">Street address</label>
-            <input class="form-control" type="text" id="sender-address-street" formControlName="street">
+            <input class="form-control"
+                   [ngClass]="{'form-control-error': getSenderAddressInput('street').touched && getSenderAddressInput('street').errors}"
+                   type="text"
+                   id="sender-address-street"
+                   formControlName="street">
+            <div *ngIf="getSenderAddressInput('street').touched && getSenderAddressInput('street').hasError('required')"
+                 class="form-error">
+              The street address is required
+            </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="sender-address-city">City</label>
-              <input class="form-control" type="text" id="sender-address-city" formControlName="city">
+              <input class="form-control"
+                     [ngClass]="{'form-control-error': getSenderAddressInput('city').touched && getSenderAddressInput('city').errors}"
+                     type="text"
+                     id="sender-address-city"
+                     formControlName="city">
+              <div *ngIf="getSenderAddressInput('city').touched && getSenderAddressInput('city').hasError('required')"
+                   class="form-error">
+                The city is required
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label" for="sender-address-post-code">Post Code</label>
-              <input class="form-control" type="text" id="sender-address-post-code" formControlName="postCode">
+              <input class="form-control"
+                     [ngClass]="{'form-control-error': getSenderAddressInput('postCode').touched && getSenderAddressInput('postCode').errors}"
+                     type="text"
+                     id="sender-address-post-code"
+                     formControlName="postCode">
+              <div *ngIf="getSenderAddressInput('postCode').touched && getSenderAddressInput('postCode').hasError('required')"
+                   class="form-error">
+                The post code is required
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label" for="sender-address-country">Country</label>
-              <input class="form-control" type="text" id="sender-address-country" formControlName="country">
+              <input class="form-control"
+                     [ngClass]="{'form-control-error': getSenderAddressInput('country').touched && getSenderAddressInput('country').errors}"
+                     type="text"
+                     id="sender-address-country"
+                     formControlName="country">
+              <div *ngIf="getSenderAddressInput('country').touched && getSenderAddressInput('country').hasError('required')"
+                   class="form-error">
+                The country is required
+              </div>
             </div>
           </div>
         </fieldset>
@@ -32,30 +64,78 @@
         <fieldset class="form-fieldset">
           <legend class="form-legend">Bill To</legend>
           <div class="form-group">
-            <label class="form-label" for="client-name">Client"s Name</label>
-            <input class="form-control" type="text" id="client-name" formControlName="clientName">
+            <label class="form-label" for="client-name">Client's Name</label>
+            <input class="form-control"
+                   [ngClass]="{'form-control-error': getInput('clientName').touched && getInput('clientName').errors}"
+                   type="text"
+                   id="client-name"
+                   formControlName="clientName">
+            <div *ngIf="getInput('clientName').touched && getInput('clientName').hasError('required')"
+                 class="form-error">
+              The client's name is required
+            </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="client-email">Client"s Email</label>
-            <input class="form-control" type="text" id="client-email" formControlName="clientEmail">
+            <label class="form-label" for="client-email">Client's Email</label>
+            <input class="form-control"
+                   [ngClass]="{'form-control-error': getInput('clientEmail').touched && getInput('clientEmail').errors}"
+                   type="text"
+                   id="client-email"
+                   formControlName="clientEmail">
+            <div *ngIf="getInput('clientEmail').touched && getInput('clientEmail').hasError('required')"
+                 class="form-error">
+              The client's email is required
+            </div>
           </div>
           <ng-container formGroupName="clientAddress">
             <div class="form-group">
               <label class="form-label" for="client-address-street">Street address</label>
-              <input class="form-control" type="text" id="client-address-street" formControlName="street">
+              <input class="form-control"
+                     [ngClass]="{'form-control-error': getClientAddressInput('street').touched && getClientAddressInput('street').errors}"
+                     type="text"
+                     id="client-address-street"
+                     formControlName="street">
+              <div *ngIf="getClientAddressInput('street').touched && getClientAddressInput('street').hasError('required')"
+                   class="form-error">
+                The street address is required
+              </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="client-address-city">City</label>
-                <input class="form-control" type="text" id="client-address-city" formControlName="city">
+                <input class="form-control"
+                       [ngClass]="{'form-control-error': getClientAddressInput('city').touched && getClientAddressInput('city').errors}"
+                       type="text"
+                       id="client-address-city"
+                       formControlName="city">
+                <div *ngIf="getClientAddressInput('city').touched && getClientAddressInput('city').hasError('required')"
+                     class="form-error">
+                  The city is required
+                </div>
               </div>
               <div class="form-group">
                 <label class="form-label" for="client-address-post-code">Post Code</label>
-                <input class="form-control" type="text" id="client-address-post-code" formControlName="postCode">
+                <input class="form-control"
+                       [ngClass]="{'form-control-error': getClientAddressInput('postCode').touched && getClientAddressInput('postCode').errors}"
+                       type="text"
+                       id="client-address-post-code"
+                       formControlName="postCode">
+                <div *ngIf="getClientAddressInput('postCode').touched && getClientAddressInput('postCode').hasError('required')"
+                     class="form-error">
+                  The post code is required
+                </div>
               </div>
               <div class="form-group">
                 <label class="form-label" for="client-address-country">Country</label>
-                <input class="form-control" type="text" id="client-address-country" formControlName="country">
+                <input class="form-control"
+                       [ngClass]="{'form-control-error': getClientAddressInput('country').touched && getClientAddressInput('country').errors}"
+                       type="text"
+                       id="client-address-country"
+                       formControlName="country">
+                <div *ngIf="getClientAddressInput('country').touched && getClientAddressInput('country').hasError('required')"
+                     class="form-error">
+                  The country is required
+                </div>
               </div>
             </div>
           </ng-container>
@@ -65,16 +145,40 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="created-at">Issue Date</label>
-              <input class="form-control" type="text" id="created-at" formControlName="createdAt">
+              <input class="form-control"
+                     [ngClass]="{'form-control-error': getInput('createdAt').touched && getInput('createdAt').errors}"
+                     type="text"
+                     id="created-at"
+                     formControlName="createdAt">
+              <div *ngIf="getInput('createdAt').touched && getInput('createdAt').hasError('required')"
+                   class="form-error">
+                The issue date is required
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label" for="payment-terms">Payment Terms</label>
-              <input class="form-control" type="text" id="payment-terms" formControlName="paymentTerms">
+              <input class="form-control"
+                     [ngClass]="{'form-control-error': getInput('paymentTerms').touched && getInput('paymentTerms').errors}"
+                      type="text"
+                     id="payment-terms"
+                     formControlName="paymentTerms">
+              <div *ngIf="getInput('paymentTerms').touched && getInput('paymentTerms').hasError('required')"
+                   class="form-error">
+                The payment terms is required
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label class="form-label" for="description">Project Description</label>
-            <input class="form-control" type="text" id="description" formControlName="description">
+            <input class="form-control"
+                   [ngClass]="{'form-control-error': getInput('description').touched && getInput('description').errors}"
+                   type="text"
+                   id="description"
+                   formControlName="description">
+            <div *ngIf="getInput('description').touched && getInput('description').hasError('required')"
+                 class="form-error">
+              The project description is required
+            </div>
           </div>
         </fieldset>
 
@@ -95,24 +199,45 @@
                 <ng-container [formGroupName]="i">
                   <div class="form-table-column name">
                     <div class="form-group">
-                      <input class="form-control" type="text" formControlName="name">
+                      <input class="form-control"
+                             [ngClass]="{'form-control-error': getItemInput(i, 'name').touched && getItemInput(i, 'name').errors}"
+                             type="text"
+                             formControlName="name">
+                      <div *ngIf="getItemInput(i, 'name').touched && getItemInput(i, 'name').hasError('required')"
+                           class="form-error">
+                        The item name is required
+                      </div>
                     </div>
                   </div>
                   <div class="form-table-column quantity">
                     <div class="form-group">
-                      <input class="form-control" type="text" formControlName="quantity">
+                      <input class="form-control"
+                             [ngClass]="{'form-control-error': getItemInput(i, 'quantity').touched && getItemInput(i, 'quantity').errors}"
+                             type="text"
+                             formControlName="quantity">
+                      <div *ngIf="getItemInput(i, 'quantity').touched && getItemInput(i, 'quantity').hasError('required')"
+                           class="form-error">
+                        Required
+                      </div>
                     </div>
                   </div>
                   <div class="form-table-column price">
                     <div class="form-group">
-                      <input class="form-control" type="text" formControlName="price">
+                      <input class="form-control"
+                             [ngClass]="{'form-control-error': getItemInput(i, 'price').touched && getItemInput(i, 'price').errors}"
+                             type="text"
+                             formControlName="price">
+                      <div *ngIf="getItemInput(i, 'price').touched && getItemInput(i, 'price').hasError('required')"
+                           class="form-error">
+                        Required
+                      </div>
                     </div>
                   </div>
                   <div class="form-table-column total">
                     <div class="form-table-value">{{getTotal(i)}}</div>
                   </div>
                   <div class="form-table-column actions" title="Remove Item" (click)="removeItem(i)">
-                    <em class="icon icon-delete"></em>
+                    <em *ngIf="this.items.length > 1" class="icon icon-delete"></em>
                   </div>
                 </ng-container>
               </div>
@@ -129,7 +254,7 @@
       </div>
       <div class="form-actions-group">
         <button type="button" class="button button-secondary" (click)="onClickSaveAsDraft()">Save as Draft</button>
-        <button type="button" class="button button-primary" (click)="onSubmit()">Save & Send</button>
+        <button type="button" class="button button-primary" (click)="onClickSaveAndSend()">Save & Send</button>
       </div>
     </div>
     <div *ngIf="mode === 'edit'" class="form-actions">
