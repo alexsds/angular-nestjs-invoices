@@ -76,9 +76,20 @@ export class InvoiceFormComponent implements OnInit {
     return total;
   }
 
-  onSubmit(): void {
-    const values = this.form?.value;
-    console.log('values', values);
+  onClickSaveChanges(): void {
+    this.markAllAsRequired();
+    this.form?.markAllAsTouched();
+
+    if (this.form?.valid) {
+      const values = this.form?.value;
+      const id = this.invoice?.id as string;
+      this.invoicesService
+        .update(id, values)
+        .pipe(take(1))
+        .subscribe(() => {
+          this.invoiceFormService.toggleForm();
+        });
+    }
   }
 
   onClickCancel(): void {

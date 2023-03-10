@@ -1,4 +1,5 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateInvoiceDto } from './create-invoice.dto';
+import { Invoice } from '../entities/invoice.entity';
 
-export class UpdateInvoiceDto extends PartialType(CreateInvoiceDto) {}
+export class UpdateInvoiceDto {
+  invoice: Invoice;
+}

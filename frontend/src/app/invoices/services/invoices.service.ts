@@ -31,6 +31,14 @@ export class InvoicesService {
     return this.http.post<InvoiceCreateResponse>(environment.apiUrl.invoices.create, { invoice, isDraft });
   }
 
+  update(id: string, invoice: Invoice): Observable<Invoice> {
+    if (environment.mock) {
+      return this.http.put<Invoice>(`${environment.apiUrl.invoices.one}/${id}`, { invoice });
+    }
+
+    return this.http.put<Invoice>(`${environment.apiUrl.invoices.one}/${id}`, { invoice });
+  }
+
   remove(id: string): Observable<void> {
     if (environment.mock) {
       return this.http.get<void>(environment.apiUrl.invoices.one);

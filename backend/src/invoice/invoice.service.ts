@@ -23,14 +23,7 @@ export class InvoiceService {
     if (!createInvoiceDto.isDraft) {
       invoice.status = InvoiceStatus.PENDING;
     }
-
-    invoice.total = 0;
-    invoice.items.forEach((item) => {
-      const totalItemPrice = item.price * item.quantity;
-      const total = Number(parseFloat(String(totalItemPrice)).toFixed(2));
-      invoice.total = invoice.total + total;
-    });
-
+    invoice.total = this.getTotal(invoice);
     this.invoices.set(id, invoice);
     return { id };
   }
@@ -48,7 +41,14 @@ export class InvoiceService {
   }
 
   update(id: string, updateInvoiceDto: UpdateInvoiceDto) {
-    return `This action updates a #${id} invoice`;
+    const invoice = this.findOne(id);
+    if (invoice) {
+      const updatedInvoice = { ...invoice, ...updateInvoiceDto.invoice };
+      updatedInvoice.status = InvoiceStatus.PENDING;
+      updatedInvoice.total = this.getTotal(updatedInvoice);
+      this.invoices.set(id, updatedInvoice);
+      return updatedInvoice;
+    }
   }
 
   remove(id: string) {
@@ -61,6 +61,16 @@ export class InvoiceService {
 
   clean(): void {
     this.invoices = new Map<string, Invoice>();
+  }
+
+  private getTotal(invoice: Invoice): number {
+    let total = 0;
+    invoice.items.forEach((item) => {
+      const totalItemPrice = item.price * item.quantity;
+      const totalPrice = Number(parseFloat(String(totalItemPrice)).toFixed(2));
+      total = total + totalPrice;
+    });
+    return total;
   }
 
   private getPrefix(length) {
