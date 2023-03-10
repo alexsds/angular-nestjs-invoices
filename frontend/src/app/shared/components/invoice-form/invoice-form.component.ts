@@ -16,10 +16,6 @@ export class InvoiceFormComponent implements OnInit {
     this.createForm();
   }
 
-  onClickOutsideForm() {
-    this.invoiceFormService.toggleForm();
-  }
-
   get items() {
     return this.form?.get('items') as FormArray;
   }
@@ -52,6 +48,14 @@ export class InvoiceFormComponent implements OnInit {
   onSubmit(): void {
     const values = this.form?.value;
     console.log('values', values);
+  }
+
+  onClickOutsideForm(): void {
+    this.invoiceFormService.toggleForm();
+  }
+
+  onClickDiscard(): void {
+    this.invoiceFormService.toggleForm();
   }
 
   private createForm(): void {
