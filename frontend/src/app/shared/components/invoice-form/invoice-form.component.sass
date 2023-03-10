@@ -42,6 +42,21 @@
 
   &-group
     width: 100%
+    position: relative
+
+    &-datepicker
+      &:after
+        content: ''
+        display: inline-block
+        height: 16px
+        width: 16px
+        margin-left: 10px
+        background-image: url('../../../../assets/icons/icon-calendar.svg')
+        background-repeat: no-repeat
+        position: absolute
+        right: 15px
+        top: 40px
+        pointer-events: none
 
   &-label
     font-weight: 300

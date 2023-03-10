@@ -1,0 +1,9 @@
+<div class="header">
+  <div class="header-arrow-left" (click)="previousClicked('month')">
+    <em class="icon icon-arrow-left"></em>
+  </div>
+  <span class="header-label">{{ periodLabel | lowercase }}</span>
+  <div class="header-arrow-right" (click)="nextClicked('month')">
+    <em class="icon icon-arrow-right"></em>
+  </div>
+</div>

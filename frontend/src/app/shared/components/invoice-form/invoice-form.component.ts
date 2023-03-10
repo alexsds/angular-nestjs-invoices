@@ -6,6 +6,7 @@ import { take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { createInvoice, updateInvoice } from '../../../store/invoice/invoice.actions';
 import { selectInvoiceById } from '../../../store/invoice/invoice.selectors';
+import { DatepickerCustomHeaderComponent } from '../datepicker-custom-header/datepicker-custom-header.component';
 
 type Mode = 'edit' | 'new';
 
@@ -15,6 +16,7 @@ type Mode = 'edit' | 'new';
   styleUrls: ['./invoice-form.component.sass'],
 })
 export class InvoiceFormComponent implements OnInit {
+  customHeader = DatepickerCustomHeaderComponent;
   mode: Mode = 'new';
   invoice: Invoice | undefined;
   form: FormGroup | undefined;

@@ -143,13 +143,16 @@
 
         <fieldset class="form-fieldset">
           <div class="form-row">
-            <div class="form-group">
+            <div class="form-group form-group-datepicker">
               <label class="form-label" for="created-at">Issue Date</label>
               <input class="form-control"
                      [ngClass]="{'form-control-error': getInput('createdAt').touched && getInput('createdAt').errors}"
                      type="text"
                      id="created-at"
-                     formControlName="createdAt">
+                     formControlName="createdAt"
+                     (focus)="picker.open()"
+                     [matDatepicker]="picker">
+              <mat-datepicker #picker [calendarHeaderComponent]="customHeader"></mat-datepicker>
               <div *ngIf="getInput('createdAt').touched && getInput('createdAt').hasError('required')"
                    class="form-error">
                 The issue date is required

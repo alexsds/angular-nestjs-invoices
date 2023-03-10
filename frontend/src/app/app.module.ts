@@ -9,6 +9,19 @@ import { reducers, metaReducers } from './store';
 import * as fromInvoice from './store/invoice/invoice.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { InvoiceEffects } from './store/invoice/invoice.effects';
+import { MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
+
+export const GRI_DATE_FORMATS: MatDateFormats = {
+  ...MAT_NATIVE_DATE_FORMATS,
+  display: {
+    ...MAT_NATIVE_DATE_FORMATS.display,
+    dateInput: {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    } as Intl.DateTimeFormatOptions,
+  },
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +34,10 @@ import { InvoiceEffects } from './store/invoice/invoice.effects';
     StoreModule.forFeature(fromInvoice.invoiceFeatureKey, fromInvoice.reducer),
     EffectsModule.forRoot([InvoiceEffects]),
   ],
-  providers: [{ provide: DEFAULT_CURRENCY_CODE, useValue: 'GBP' }],
+  providers: [
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'GBP' },
+    { provide: MAT_DATE_FORMATS, useValue: GRI_DATE_FORMATS },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
