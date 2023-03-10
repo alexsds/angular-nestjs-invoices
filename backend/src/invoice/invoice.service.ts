@@ -69,7 +69,7 @@ export class InvoiceService {
   }
 
   clean(): void {
-    this.invoices = new Map<string, Invoice>();
+    this.invoices.clear();
   }
 
   private getTotal(invoice: Invoice): number {
@@ -101,9 +101,9 @@ export class InvoiceService {
   }
 
   private initInvoices(): void {
-    this.clean();
+    this.invoices.clear();
     data.forEach((item) => {
-      this.invoices.set(item.id, item as Invoice);
+      this.invoices.set(item.id, { ...(item as Invoice) });
     });
   }
 }
