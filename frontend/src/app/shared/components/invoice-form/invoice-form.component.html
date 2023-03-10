@@ -3,7 +3,10 @@
   <div class="form">
     <div class="form-body">
       <div class="form-content">
-        <h1 class="form-title">New Invoice</h1>
+        <h1 *ngIf="mode === 'new'" class="form-title">New Invoice</h1>
+        <h1 *ngIf="mode === 'edit'" class="form-title">
+          Edit <span class="form-title-prefix">#</span>{{invoice?.id}}
+        </h1>
         <fieldset class="form-fieldset" formGroupName="senderAddress">
           <legend class="form-legend">Bill From</legend>
           <div class="form-group">
@@ -29,11 +32,11 @@
         <fieldset class="form-fieldset">
           <legend class="form-legend">Bill To</legend>
           <div class="form-group">
-            <label class="form-label" for="client-name">Client's Name</label>
+            <label class="form-label" for="client-name">Client"s Name</label>
             <input class="form-control" type="text" id="client-name" formControlName="clientName">
           </div>
           <div class="form-group">
-            <label class="form-label" for="client-email">Client's Email</label>
+            <label class="form-label" for="client-email">Client"s Email</label>
             <input class="form-control" type="text" id="client-email" formControlName="clientEmail">
           </div>
           <ng-container formGroupName="clientAddress">
@@ -120,13 +123,21 @@
         <button type="button" class="button button-default button-block" (click)="addItem()">+ Add New Item</button>
       </div>
     </div>
-    <div class="form-actions">
+    <div *ngIf="mode === 'new'" class="form-actions">
       <div class="form-actions-group">
         <button type="button" class="button button-cancel" (click)="onClickDiscard()">Discard</button>
       </div>
       <div class="form-actions-group">
         <button type="button" class="button button-secondary" (click)="onSubmit()">Save as Draft</button>
         <button type="button" class="button button-primary" (click)="onSubmit()">Save & Send</button>
+      </div>
+    </div>
+    <div *ngIf="mode === 'edit'" class="form-actions">
+      <div class="form-actions-group">
+      </div>
+      <div class="form-actions-group">
+        <button type="button" class="button button-secondary" (click)="onClickCancel()">Cancel</button>
+        <button type="button" class="button button-primary" (click)="onSubmit()">Save Changes</button>
       </div>
     </div>
   </div>

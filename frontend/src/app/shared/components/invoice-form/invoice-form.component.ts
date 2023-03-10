@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceFormService } from '../../services/invoice-form.service';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { InvoicesService } from '../../../invoices/services/invoices.service';
+import { Invoice } from '../../../invoices/models/invoice';
+import { take } from 'rxjs';
+
+type Mode = 'edit' | 'new';
 
 @Component({
   selector: 'app-invoice-form',
@@ -8,12 +13,19 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./invoice-form.component.sass'],
 })
 export class InvoiceFormComponent implements OnInit {
+  mode: Mode = 'new';
+  invoice: Invoice | undefined;
   form: FormGroup | undefined;
 
-  constructor(private fb: FormBuilder, private invoiceFormService: InvoiceFormService) {}
+  constructor(
+    private fb: FormBuilder,
+    private invoiceFormService: InvoiceFormService,
+    private invoicesService: InvoicesService,
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
+    this.setValues();
   }
 
   get items() {
@@ -50,6 +62,10 @@ export class InvoiceFormComponent implements OnInit {
     console.log('values', values);
   }
 
+  onClickCancel(): void {
+    this.invoiceFormService.toggleForm();
+  }
+
   onClickOutsideForm(): void {
     this.invoiceFormService.toggleForm();
   }
@@ -79,6 +95,24 @@ export class InvoiceFormComponent implements OnInit {
       description: [''],
       items: this.fb.array([]),
     });
+  }
+
+  private setValues(): void {
+    const invoiceId = this.invoiceFormService.getInvoiceId();
+    if (invoiceId) {
+      this.invoicesService
+        .getOneById(invoiceId)
+        .pipe(take(1))
+        .subscribe((invoice) => {
+          this.invoice = invoice;
+          invoice.items.forEach(() => {
+            this.addItem();
+          });
+          this.form?.patchValue(invoice);
+          this.mode = 'edit';
+        });
+      return;
+    }
     this.addItem();
   }
 }

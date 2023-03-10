@@ -29,7 +29,7 @@ export class InvoicesDetailedComponent {
   }
 
   onClickEditAction(): void {
-    this.invoiceFormService.toggleForm();
+    this.invoiceFormService.toggleForm(this.invoiceId);
   }
 
   onClickDeleteAction(): void {
