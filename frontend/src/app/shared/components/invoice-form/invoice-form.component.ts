@@ -172,6 +172,7 @@ export class InvoiceFormComponent implements OnInit {
           });
           this.form?.patchValue(invoice);
           this.mode = 'edit';
+          this.form?.get('createdAt')?.disable();
         });
       return;
     }

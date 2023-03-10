@@ -164,10 +164,10 @@
                             [ngClass]="{'form-control-error': getInput('paymentTerms').touched && getInput('paymentTerms').errors}"
                             id="payment-terms"
                             formControlName="paymentTerms">
-                  <mat-option value="1">Net 1 Day</mat-option>
-                  <mat-option value="7">Net 7 Days</mat-option>
-                  <mat-option value="14">Net 14 Days</mat-option>
-                  <mat-option value="30">Net 30 Days</mat-option>
+                  <mat-option [value]="1">Net 1 Day</mat-option>
+                  <mat-option [value]="7">Net 7 Days</mat-option>
+                  <mat-option [value]="14">Net 14 Days</mat-option>
+                  <mat-option [value]="30">Net 30 Days</mat-option>
                 </mat-select>
               <div *ngIf="getInput('paymentTerms').touched && getInput('paymentTerms').hasError('required')"
                    class="form-error">
