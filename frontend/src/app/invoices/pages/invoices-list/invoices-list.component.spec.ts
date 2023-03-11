@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { InvoicesListComponent } from './invoices-list.component';
 
 describe('InvoicesListComponent', () => {
@@ -8,6 +9,7 @@ describe('InvoicesListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [InvoicesListComponent],
+      providers: [provideMockStore()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(InvoicesListComponent);
