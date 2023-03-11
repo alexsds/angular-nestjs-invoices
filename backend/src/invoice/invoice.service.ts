@@ -113,6 +113,8 @@ export class InvoiceService {
   private getPaymentDue(invoice: Invoice): string {
     if (!invoice.createdAt) {
       invoice.createdAt = new Date().toISOString().split('T')[0];
+    } else {
+      invoice.createdAt = new Date(invoice.createdAt).toISOString().split('T')[0];
     }
     if (!invoice.paymentDue) {
       invoice.paymentTerms = PaymentTerms.MOUTH;
