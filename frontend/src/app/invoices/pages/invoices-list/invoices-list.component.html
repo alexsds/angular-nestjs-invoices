@@ -1,75 +1,77 @@
-<div class="page-header">
-  <div class="headline">
-    <h1 class="headline-title">Invoices</h1>
-    <p *ngIf="invoices.length > 0" class="headline-description">
-      There are {{invoices.length}} total invoices
-    </p>
-    <p *ngIf="invoices.length === 0" class="headline-description">
-      No invoices
-    </p>
-  </div>
-  <div class="actions">
-    <div class="filter">
-      <button *ngIf="statuses.size > 0" type="button" [matMenuTriggerFor]="menu" class="filter-button">
-        <span *ngIf="!activeFilter">Filter by status</span>
-        <span *ngIf="activeFilter">{{activeFilter | titlecase}}</span>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button *ngFor="let status of statuses"
-                (click)="onClickFilterItem(status)"
-                [ngClass]="{active: activeFilter === status}"
-                mat-menu-item>
-          {{status | titlecase}}
+<ng-container *ngIf="isLoaded$ | async">
+  <div class="page-header">
+    <div class="headline">
+      <h1 class="headline-title">Invoices</h1>
+      <p *ngIf="invoices.length > 0" class="headline-description">
+        There are {{invoices.length}} total invoices
+      </p>
+      <p *ngIf="invoices.length === 0" class="headline-description">
+        No invoices
+      </p>
+    </div>
+    <div class="actions">
+      <div class="filter">
+        <button *ngIf="statuses.size > 0" type="button" [matMenuTriggerFor]="menu" class="filter-button">
+          <span *ngIf="!activeFilter">Filter by status</span>
+          <span *ngIf="activeFilter">{{activeFilter | titlecase}}</span>
         </button>
-      </mat-menu>
-      <div *ngIf="activeFilter"
-           title="Clear filter"
-           class="filter-action"
-           (click)="onClickClearFilterAction()">
-        &#10005;
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let status of statuses"
+                  (click)="onClickFilterItem(status)"
+                  [ngClass]="{active: activeFilter === status}"
+                  mat-menu-item>
+            {{status | titlecase}}
+          </button>
+        </mat-menu>
+        <div *ngIf="activeFilter"
+             title="Clear filter"
+             class="filter-action"
+             (click)="onClickClearFilterAction()">
+          &#10005;
+        </div>
       </div>
+      <button class="button button-primary button-with-icon" (click)="onClickNewInvoice()">
+        <span class="button-icon"><em class="icon icon-plus"></em></span>
+        New Invoice
+      </button>
     </div>
-    <button class="button button-primary button-with-icon" (click)="onClickNewInvoice()">
-      <span class="button-icon"><em class="icon icon-plus"></em></span>
-      New Invoice
-    </button>
   </div>
-</div>
 
-<ng-container *ngIf="invoices.length > 0; else emptyState">
-  <div class="invoices-list">
-    <div *ngFor="let invoice of invoices"
-         class="invoice-item"
-         [routerLink]="[invoice.id]">
-      <div class="invoice-item-id">
-        <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
-      </div>
-      <div class="invoice-item-date">
-        {{ invoice.createdAt }}
-      </div>
-      <div class="invoice-item-client">
-        {{ invoice.clientName }}
-      </div>
-      <div class="invoice-item-total">
-        {{ invoice.total | currency }}
-      </div>
-      <div class="invoice-item-status">
-        <app-invoice-status [status]="invoice.status"></app-invoice-status>
-      </div>
-      <div class="invoice-item-action">
-        <em class="icon icon-arrow-right"></em>
+  <ng-container *ngIf="invoices.length > 0; else emptyState">
+    <div class="invoices-list">
+      <div *ngFor="let invoice of invoices"
+           class="invoice-item"
+           [routerLink]="[invoice.id]">
+        <div class="invoice-item-id">
+          <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
+        </div>
+        <div class="invoice-item-date">
+          {{ invoice.createdAt }}
+        </div>
+        <div class="invoice-item-client">
+          {{ invoice.clientName }}
+        </div>
+        <div class="invoice-item-total">
+          {{ invoice.total | currency }}
+        </div>
+        <div class="invoice-item-status">
+          <app-invoice-status [status]="invoice.status"></app-invoice-status>
+        </div>
+        <div class="invoice-item-action">
+          <em class="icon icon-arrow-right"></em>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <div class="empty-state-image"></div>
+      <h2 class="empty-state-title">There is nothing here</h2>
+      <p class="empty-state-description">
+        Create an invoice by clicking the <br>
+        <strong>New Invoice</strong> button and get started
+      </p>
+    </div>
+  </ng-template>
 </ng-container>
-
-<ng-template #emptyState>
-  <div class="empty-state">
-    <div class="empty-state-image"></div>
-    <h2 class="empty-state-title">There is nothing here</h2>
-    <p class="empty-state-description">
-      Create an invoice by clicking the <br>
-      <strong>New Invoice</strong> button and get started
-    </p>
-  </div>
-</ng-template>

@@ -3,6 +3,7 @@ import * as fromInvoice from './invoice.reducer';
 import { Invoice } from '../../invoices/models/invoice';
 
 export const selectInvoiceState = createFeatureSelector<fromInvoice.InvoiceState>(fromInvoice.invoiceFeatureKey);
+export const selectInvoicesLoadingState = createSelector(selectInvoiceState, (state) => state.loaded);
 export const selectInvoices = createSelector(selectInvoiceState, (state) => state.invoices);
 export const selectInvoiceById = (id: string) =>
   createSelector(selectInvoices, (invoices) => {

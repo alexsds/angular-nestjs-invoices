@@ -7,6 +7,7 @@ export const invoiceFeatureKey = 'invoice';
 
 export interface InvoiceState {
   invoices: Invoice[];
+  loaded: boolean;
   activeFilter: InvoiceStatus | undefined;
   filteredInvoices: Invoice[];
   statuses: Set<InvoiceStatus>;
@@ -14,6 +15,7 @@ export interface InvoiceState {
 
 export const initialState: InvoiceState = {
   invoices: [],
+  loaded: false,
   activeFilter: undefined,
   filteredInvoices: [],
   statuses: new Set(),
@@ -25,6 +27,7 @@ export const reducer = createReducer(
     const statuses = new Set(action.invoices.map((item) => item.status));
     return {
       ...state,
+      loaded: true,
       statuses: statuses,
       invoices: action.invoices,
       filteredInvoices: action.invoices,
