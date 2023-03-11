@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest } from 'rxjs';
 import { InvoiceFormService } from 'src/app/shared/services/invoice-form.service';
 import { Invoice } from '../../models/invoice';
-import { selectActiveFilter, selectFilteredInvoices, selectStatuses } from '../../../store/invoice/invoice.selectors';
+import { selectInvoicesWithFilters } from '../../../store/invoice/invoice.selectors';
 import { InvoiceStatus } from '../../emums/invoice-status.enum';
 import { clearInvoiceFilter, filterInvoiceByStatus } from '../../../store/invoice/invoice.actions';
 
@@ -20,11 +19,7 @@ export class InvoicesListComponent implements OnInit {
   constructor(private store: Store, private invoiceFormService: InvoiceFormService) {}
 
   ngOnInit(): void {
-    combineLatest([
-      this.store.select(selectFilteredInvoices),
-      this.store.select(selectStatuses),
-      this.store.select(selectActiveFilter),
-    ]).subscribe(([filteredInvoices, statuses, activeFilter]) => {
+    this.store.select(selectInvoicesWithFilters).subscribe(({ filteredInvoices, statuses, activeFilter }) => {
       this.invoices = filteredInvoices;
       this.statuses = statuses;
       this.activeFilter = activeFilter;
