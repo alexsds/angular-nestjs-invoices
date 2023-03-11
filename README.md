@@ -1,55 +1,91 @@
-### Objective
+# Invoices
+Simple application to manage invoices
 
-Your challenge is to build out the frontend and backend components of an invoicing application using.
-Please use Angular for the frontend. For the backend, feel free to pick any node.js framework you'd like to use.
+[Project Requirements](documentation%2Frequirements.md)
 
-### Brief
+[A high-level project plan](documentation%2Fhigh-level-plan.md)
 
-Your task is to build out the project to the design files provided in the `/designs` folder. The functionality outlined in **Expected Behaviour** is more important than implementing the designs pixel-perfect. You are only supposed to build out the desktop version of the assignment and it does not need to be responsive.
+## Technology stack
+- Frontend - Angular (v15.2.0)
+- State management - NgRx (v15.3.0)
+- UI component library - Angular Material (v15.2.1)
+- Backend - NestJS (v9.0.0)
+- Node.js - v18.15.0 (latest LTS)
 
-All the required assets for this project are in the `/assets` folder. The assets are already exported for the correct screen size and optimized.
+## Demo
+### UI
+https://angular-nestjs-invoices.web.app/
 
-The design system file will give you more information about the various colors, fonts, and styles used in this project.
+### API
+https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/
 
-We provide example data in a local `data.json` file, you may load it when the backend application starts up to display some initial data.
+## API Endpoints
 
-### Tasks
+### Invoices CRUD
 
-Your users should be able to:
+#### Find all
+GET [/invoice](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice)
 
-- Create, read, update, and delete invoices
-  - Create corresponding API endpoints
-  - No authentication/session management is required. Imagine you're building this application for a single user (yourself)
-  - Data storage does not have to be persistent, you do not have to connect the backend to a database.
-- **Bonus**: Receive form validations when trying to create/edit an invoice
-- **Bonus**: Save draft invoices, and mark pending invoices as paid
-- **Bonus**: Filter invoices by status (draft/pending/paid)
+#### Find one
+GET [/invoice/:id](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/RT3080)
 
-### Expected Behaviour
+#### Update
+PUT [/invoice/:id](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/RT3080)
 
-- Creating an invoice
-  - When creating a new invoice, an ID needs to be created. Each ID should be 2 random uppercased letters followed by 4 random numbers.
-  - Invoices can be created either as drafts or as pending. Clicking "Save as Draft" should allow the user to leave any form field blank, but should create an ID if one doesn't exist and set the status to "draft". Clicking "Save & Send" should require all forms fields to be filled in, and should set the status to "pending".
-  - Changing the Payments Terms field should set the `paymentDue` property based on the `createdAt` date plus the numbers of days set for the payment terms.
-  - The `total` should be the sum of all items on the invoice.
-- Editing an invoice
-  - When saving changes to an invoice, all fields are required when the "Save Changes" button is clicked. If the user clicks "Cancel", any unsaved changes should be reset.
-  - If the invoice being edited is a "draft", the status needs to be updated to "pending" when the "Save Changes" button is clicked. All fields are required at this stage.
-- Users should be able to mark invoices as paid by clicking the "Mark as Paid" button. This should change the invoice's status to "paid".
-- Feel free not to add custom styling for the date and dropdown form fields. The designs for those fields are optional extras and are mostly for illustration purposes.
+#### Remove
+DELETE [/invoice/:id](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/RT3080)
 
-### Evaluation Criteria
 
-- Show us your work through your commit history
-- We're looking for you to produce working code, with enough room to demonstrate how to structure components in a small program
-- Completeness: did you complete the features?
-- Correctness: does the functionality act in sensible, thought-out ways?
-- Maintainability: is it written in a clean, maintainable way?
+### Helpers
 
-### CodeSubmit
+#### Clean Data (Remove all invoices)
+GET [/clean](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/clean)
 
-Please organize, design, test, and document your code as if it were going into production - then push your changes to the master branch. After you have pushed your code, you may submit the assignment on the assignment page.
+#### Reset Data (Create test invoices)
+GET [/reset](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/reset)
 
-**Have fun building!** 🚀
 
-The Lylu GmbH Team
+### Local development
+
+#### UI
+http://localhost:4200/
+
+Installation
+```
+cd frontend
+npm install
+```
+
+Start with mock data
+```
+npm run start
+```
+
+Start with local API
+```
+npm run start:api
+```
+
+Build
+```
+npm run build
+```
+
+### API
+http://localhost:3000/
+
+Installation
+```
+cd backend
+npm install
+```
+
+Start server
+```
+npm run start
+```
+
+Build
+```
+npm run build
+```
