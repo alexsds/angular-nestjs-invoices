@@ -46,7 +46,7 @@
           <span class="invoice-item-id-prefix">#</span>{{ invoice.id }}
         </div>
         <div class="invoice-item-date">
-          {{ invoice.createdAt }}
+          Due {{invoice.paymentDue | date: 'd MMM y'}}
         </div>
         <div class="invoice-item-client">
           {{ invoice.clientName }}
