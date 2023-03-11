@@ -10,7 +10,7 @@
   </div>
   <div class="actions">
     <div class="filter">
-      <button type="button" [matMenuTriggerFor]="menu" class="filter-button">
+      <button *ngIf="statuses.size > 0" type="button" [matMenuTriggerFor]="menu" class="filter-button">
         <span *ngIf="!activeFilter">Filter by status</span>
         <span *ngIf="activeFilter">{{activeFilter | titlecase}}</span>
       </button>
