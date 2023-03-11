@@ -89,3 +89,7 @@ Build
 ```
 npm run build
 ```
+
+### CI/CD
+
+[Actions](https://github.com/alexsds/angular-nestjs-invoices/actions)
