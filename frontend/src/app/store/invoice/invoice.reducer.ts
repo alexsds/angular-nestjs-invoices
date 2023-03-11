@@ -52,16 +52,20 @@ export const reducer = createReducer(
     if (invoiceIndex !== -1) {
       invoices[invoiceIndex] = action.invoice;
     }
+    const statuses = new Set(invoices.map((item) => item.status));
     return {
       ...state,
       invoices,
+      statuses
     };
   }),
   on(InvoiceActions.deleteInvoiceSuccess, (state, action) => {
     const invoices = state.invoices.filter((item) => item.id !== action.id);
+    const statuses = new Set(invoices.map((item) => item.status));
     return {
       ...state,
       invoices,
+      statuses,
       activeFilter: undefined,
       filteredInvoices: invoices,
     };
@@ -75,9 +79,11 @@ export const reducer = createReducer(
       const invoiceToUpdate = invoices[invoiceIndex];
       invoices[invoiceIndex] = { ...invoiceToUpdate, status: InvoiceStatus.PAID };
     }
+    const statuses = new Set(invoices.map((item) => item.status));
     return {
       ...state,
       invoices,
+      statuses,
     };
   }),
   on(InvoiceActions.filterInvoiceByStatus, (state, action) => {
