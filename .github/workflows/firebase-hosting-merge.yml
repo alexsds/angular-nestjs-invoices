@@ -11,6 +11,9 @@ jobs:
     defaults:
       run:
         working-directory: ./frontend
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
     steps:
       - uses: actions/checkout@v2
       - run: npm ci && npm run build
