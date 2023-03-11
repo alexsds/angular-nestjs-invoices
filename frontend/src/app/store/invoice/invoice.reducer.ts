@@ -35,9 +35,11 @@ export const reducer = createReducer(
       return { ...a };
     });
     invoices.push(action.invoice);
+    const statuses = new Set(invoices.map((item) => item.status));
     return {
       ...state,
       invoices,
+      statuses: statuses,
       activeFilter: undefined,
       filteredInvoices: invoices,
     };
