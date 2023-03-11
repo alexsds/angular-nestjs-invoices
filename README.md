@@ -1,5 +1,8 @@
 # Invoices
-Simple application to manage invoices
+
+![dark.png](documentation%2Fdark.png)
+
+An application to manage invoices.
 
 [Project Requirements](documentation%2Frequirements.md)
 
@@ -45,9 +48,9 @@ GET [/clean](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/cl
 GET [/reset](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/reset)
 
 
-### Local development
+## Local development
 
-#### UI
+### UI
 http://localhost:4200/
 
 Installation
@@ -90,6 +93,6 @@ Build
 npm run build
 ```
 
-### CI/CD
+## CI/CD
 
 [Actions](https://github.com/alexsds/angular-nestjs-invoices/actions)
