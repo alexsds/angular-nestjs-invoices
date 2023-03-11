@@ -3,12 +3,12 @@ export const environment = {
   mock: false,
   apiUrl: {
     invoices: {
-      list: '/mock/responses/invoices/list.json',
-      one: '/mock/responses/invoices/one.json',
-      create: '/mock/responses/invoices/one.json',
-      update: '/mock/responses/invoices/one.json',
-      markAsPaid: '/mock/responses/invoices/one.json',
-      remove: '/mock/responses/invoices/one.json',
+      list: 'https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice',
+      one: 'https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice',
+      create: 'https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice',
+      update: 'https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice',
+      markAsPaid: 'https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/mark-as-paid',
+      remove: 'https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice',
     },
   },
 };
