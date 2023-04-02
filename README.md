@@ -20,32 +20,32 @@ An application to manage invoices.
 https://angular-nestjs-invoices.web.app/
 
 ### API
-https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/
+https://angular-nestjs-invoices-api.vercel.app/
 
 ## API Endpoints
 
 ### Invoices CRUD
 
 #### Find all
-GET [/invoice](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice)
+GET [/invoice](https://angular-nestjs-invoices-api.vercel.app/invoice)
 
 #### Find one
-GET [/invoice/:id](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/RT3080)
+GET [/invoice/:id](https://angular-nestjs-invoices-api.vercel.app/invoice/RT3080)
 
 #### Update
-PUT [/invoice/:id](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/RT3080)
+PUT [/invoice/:id](https://angular-nestjs-invoices-api.vercel.app/invoice/RT3080)
 
 #### Remove
-DELETE [/invoice/:id](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/invoice/RT3080)
+DELETE [/invoice/:id](https://angular-nestjs-invoices-api.vercel.app/invoice/RT3080)
 
 
 ### Helpers
 
 #### Clean Data (Remove all invoices)
-GET [/clean](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/clean)
+GET [/clean](https://angular-nestjs-invoices-api.vercel.app/clean)
 
 #### Reset Data (Create test invoices)
-GET [/reset](https://angular-nestjs-invoices-backend-8tmb3.ondigitalocean.app/reset)
+GET [/reset](https://angular-nestjs-invoices-api.vercel.app/reset)
 
 
 ## Local development
